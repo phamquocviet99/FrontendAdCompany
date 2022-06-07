@@ -1,0 +1,39 @@
+.img-logo-navbar {
+    height: 83px;
+  }
+  .nav-links {
+   padding: 0;
+  }
+  .text {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 18px;
+    padding: 0;
+    margin:0;
+    transition: all .1s;
+    font-family: 'System-bold', sans-serif;
+    font-weight: 400;
+    -webkit-transform: scaleX(0.5);
+    transform: scaleX(0.5);
+  }
+  .line-header{
+      display: none;
+      height: 1.5px;
+      background-color: #fff;
+  }
+  .line-header:hover {
+    height: 1.5px;
+    background-color: #fff;
+    display: flex;
+  }
+  .container-header {
+    margin: 0px 40px;
+    display: flex;
+  }
+  .bg-myColor-2 {
+    background-color: #2d2d2de1;
+  }
+  .bg-myColor-1 {
+  
+     background-color: #80aa41ee;
+  }
