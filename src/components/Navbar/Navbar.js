@@ -45,22 +45,18 @@ function NavBar() {
       link: "/contact",
     },
   ];
-  const [colorChange, setColorchange] = useState(false);
+  const [show, setShow] = useState(false);
   const changeNavbarColor = () => {
-    if (window.scrollY >= 150) {
-      setColorchange(true);
-    } else {
-      setColorchange(false);
-    }
+   
+    
   };
   window.addEventListener("scroll", changeNavbarColor);
   return (
     <Navbar
-      bg={!colorChange ? "myColor-2" : "myColor-1"}
+      bg={!show ? "myColor-2" : "myColor-1"}
       fixed="top"
       expand="lg"
       collapseOnSelect
-      className="border"
       style={{ padding: "0" }}
     >
       <div className="container">
@@ -76,10 +72,7 @@ function NavBar() {
           <Nav className="justify-content-center" style={{ width: "100%" }}>
             {listItem.map((item) => (
               <Nav.Link className="nav-links" href={item.link} key={item.id}>
-                <div>
-                  <span className="text">{item.name}</span>
-                 <div className="line-header"></div>
-                </div>
+                <span className="text">{item.name}</span>
               </Nav.Link>
             ))}
           </Nav>
