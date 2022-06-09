@@ -1,14 +1,16 @@
-import { React } from "react";
-import { useSpring, animated, useTransition } from "react-spring";
+import { React, useEffect } from "react";
+
 import { Carousel } from "react-bootstrap";
 import "./Style/HomePage.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function HomePage() {
-  const styleService = useSpring({
-    from: { opacity: 0, marginLeft: -500, maxWidth: "730px" },
-    to: { opacity: 1, marginLeft: 0 },
-    config: { duration: 2000 },
-  });
+  useEffect(() => {
+    Aos.init({ duration: 3000 });
+  }, []);
+
+
   return (
     <div className="content-home">
       <Carousel fade>
@@ -39,14 +41,15 @@ function HomePage() {
             <p className="font-title-home">Dịch vụ của chúng tôi</p>
           </div>
           <div className="row">
-            <div className="col-md-8">
-              <animated.div style={styleService}>
+            <div  data-aos="fade-right" className="col-md-8">
+             
                 <div className="row">
                   <div className="col-sm-6">
-                    <div className="txt-box-service">
+                    <div  className="txt-box-service">
                       <div className="title-inline">
                         <h2 className="title-inline">
                           <img
+                          
                             style={{ marginRight: "5px" }}
                             alt=""
                             src={require("../images/images/service-icon-1526573283.png")}
@@ -135,26 +138,31 @@ function HomePage() {
                     </button>
                   </div>
                 </div>
-              </animated.div>
+        
             </div>
 
             <div className="col-md-4">
-              <div className="box-about">
-                <img
-                className="img-about"
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-                <div className="txt-box-about">
-                  <h2 style={{fontSize:"23px"}}>Về chúng tôi</h2>
-                  <p className="content-box-about">
-                    Công ty Cổ Phần Đầu Tư L.A.D&nbsp;là đơn vị chuyên tư vấn,
-                    thiết kế kiến trúc - nội thất, thiết kế - thi công cảnh
-                    quan&nbsp;cho các khu vực tỉnh thành lớn như Tp.HCM&nbsp;và
-                    các khu vực lân cận.
-                  </p>
+             
+                <div data-aos="fade-left"  className="box-home-about">
+                  <div className="box-about">
+                    <img
+                      className="img-about"
+                      alt=""
+                      src={require("../images/images/image-1529645195.jpg")}
+                    ></img>
+
+                    <div className="txt-box-about">
+                      <h2 style={{ fontSize: "23px" }}>Về chúng tôi</h2>
+                      <p className="content-box-about">
+                        Công ty Cổ Phần Đầu Tư L.A.D&nbsp;là đơn vị chuyên tư
+                        vấn, thiết kế kiến trúc - nội thất, thiết kế - thi công
+                        cảnh quan&nbsp;cho các khu vực tỉnh thành lớn như
+                        Tp.HCM&nbsp;và các khu vực lân cận.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+          
             </div>
           </div>
         </div>

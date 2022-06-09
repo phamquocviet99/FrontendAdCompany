@@ -1,9 +1,15 @@
-import React from "react";
+import {React, useEffect} from "react";
 import "./Footer.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 function Footer() {
+  useEffect(() => {
+    Aos.init({ duration: 1000 });
+  }, []);
   return (
-    <div className="footer-container">
+    <div data-aos="fade-down"
+   data-aos-duration="700"className="footer-container">
       <div className="background-footer">
         <div className="content-footer">
           <div className="container">

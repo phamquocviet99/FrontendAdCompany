@@ -23,7 +23,6 @@
   text-transform: uppercase;
   color: rgb(255, 235, 51);
   font-size: 18px;
-
   font-family: Helvetica, Arial, Sans-serif;
   font-weight: 600;
 }
@@ -37,4 +36,7 @@
 }
 .bg-myColor-1 {
   background-color: #80aa41ee;
+}
+@media screen and (max-width: 760px) {
+
 }

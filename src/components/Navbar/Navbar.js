@@ -46,10 +46,7 @@ function NavBar() {
     },
   ];
   const [show, setShow] = useState(false);
-  const changeNavbarColor = () => {
-   
-    
-  };
+  const changeNavbarColor = () => {};
   window.addEventListener("scroll", changeNavbarColor);
   return (
     <Navbar
