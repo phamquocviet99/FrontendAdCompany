@@ -1,4 +1,4 @@
-import {React, useEffect} from "react";
+import { React, useEffect } from "react";
 import "./Footer.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -8,13 +8,16 @@ function Footer() {
     Aos.init({ duration: 1000 });
   }, []);
   return (
-    <div data-aos="fade-down"
-   data-aos-duration="700"className="footer-container">
+    <div
+      data-aos="fade-down"
+      data-aos-duration="700"
+      className="footer-container"
+    >
       <div className="background-footer">
         <div className="content-footer">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 col-xs-12">
+              <div className="col-md-6 ">
                 <h4 className="title-ft">Liên hệ</h4>
                 <h3 className="txt-ft">CÔNG TY CỔ PHẦN ĐẦU TƯ L.A.D</h3>
                 <ul className="custome-ul-left">
@@ -26,7 +29,7 @@ function Footer() {
                   <li className="txt-li">Email: Lad.jsc168@gmail.com</li>
                 </ul>
               </div>
-              <div className="col-md-6 col-xs-12">
+              <div className="col-md-6 ">
                 <h4 className="title-ft">Dịch vụ</h4>
                 <ul className="custome-ul-right">
                   <li className="txt-li">
