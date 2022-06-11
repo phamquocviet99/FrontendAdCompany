@@ -15,7 +15,7 @@
   padding-top: 20px;
 }
 .title-ft {
-  color: #3e7319;
+  color: #59a721;
   font-size: 18px;
   font-family: inherit;
   margin: 10px 0;
@@ -37,6 +37,7 @@ h3 {
   color: #fff;
   margin-bottom: 10px;
   font-weight: bold;
+  font-size: 16px;
 }
 .txt-ft {
   color: #fff;
@@ -67,7 +68,7 @@ h3 {
 .txt-bottom-ft {
   color: #fff;
   margin: 0 0 10px 0;
-  font-size: 15px;
+  font-size: 16px;
 }
 .circle-icon {
   height: 35px;

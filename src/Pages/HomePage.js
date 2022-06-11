@@ -1,6 +1,9 @@
 import { React, useEffect } from "react";
 
-import { Carousel } from "react-bootstrap";
+import { Carousel, Form, Button, FloatingLabel } from "react-bootstrap";
+import DivDesign1 from "../components/DivDesign1/DivDesign1";
+import DivDesign2 from "../components/DivDesign2/DivDesign2";
+import Iframe from "../components/Iframe/Iframe";
 import "./Style/HomePage.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -9,6 +12,8 @@ function HomePage() {
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
+  const iframe =
+    '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7840.48626187924!2d106.69834301505135!3d10.715721187147192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zRDIwLCBLREMgUGjGsOG7m2MgTmd1eeG7hW4gSMawbmcsIE5ndXnhu4VuIEjhu691IFRo4buNLCDhuqRwIDUsIFjDoyBQaMaw4bubYyBLaeG7g24sIEh1eeG7h24gTmjDoCBCw6gsIFRwLkjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1654932574737!5m2!1svi!2s" width="600" height="290" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 
   return (
     <div className="content-home">
@@ -285,6 +290,277 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <article
+        className="home-capacity"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        <div className="row" style={{ margin: "0" }}>
+          <div className="col-md-6 ed-capacity">
+            <div className="info-capacity">
+              <h2 className="title-capacity">năng lực của chúng tôi</h2>
+              <div className="txt-capacity">
+                <img alt="" src={require("../images/images/1.png")} />
+                <p className="font-txt-capacity">3 Năm kinh nghiệm</p>
+              </div>
+              <div className="txt-capacity">
+                <img alt="" src={require("../images/images/2.png")} />
+                <p className="font-txt-capacity">15 Chuyên gia kỹ thuật</p>
+              </div>
+              <div className="txt-capacity">
+                <img alt="" src={require("../images/images/3.png")} />
+                <p className="font-txt-capacity">15 Kỹ sư thiết kế</p>
+              </div>
+              <div className="txt-capacity">
+                <img alt="" src={require("../images/images/4.png")} />
+                <p className="font-txt-capacity">35 Nhà vườn đối tác</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article
+        className="customer-review"
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        <div className="container">
+          <div className="home-title">
+            <p className="font-title-home">ý kiến khách hàng</p>
+          </div>
+          <Carousel>
+            <Carousel.Item interval={3000}>
+              <div className="row">
+                <div className="col-md-3">
+                  <img
+                    alt=""
+                    src={require("../images/images/customer.jpg")}
+                    className="img-customer"
+                  ></img>
+                </div>
+                <div className="col-md-9">
+                  <div className="info-customer">
+                    <p>
+                      <i class="fa fa-quote-left icon-customer"></i>{" "}
+                    </p>
+                    <p className="content-review">
+                      L.A.D là một công ty cảnh quan rất tốt. Họ có nhiều dịch
+                      vụ tốt. Chúng tôi yêu họ bởi vì tất cả các nhân viên đang
+                      làm việc chăm chỉ, trung thực và đáng tin cậy. Họ luôn
+                      luôn đến đúng giờ, và giá thì...tốt quá!
+                    </p>
+                    <h3 className="name-customer">Mai harimu</h3>
+                    <p className="job-customer"> Thiết kế thời trang</p>
+                  </div>
+                </div>
+              </div>
+            </Carousel.Item>
+            <Carousel.Item interval={3000}>
+              <div className="row">
+                <div className="col-md-3">
+                  <img
+                    alt=""
+                    src={require("../images/images/customer.jpg")}
+                    className="img-customer"
+                  ></img>
+                </div>
+                <div className="col-md-9">
+                  <div className="info-customer">
+                    <p>
+                      <i class="fa fa-quote-left icon-customer"></i>{" "}
+                    </p>
+                    <p className="content-review">
+                      L.A.D là một công ty cảnh quan rất tốt. Họ có nhiều dịch
+                      vụ tốt. Chúng tôi yêu họ bởi vì tất cả các nhân viên đang
+                      làm việc chăm chỉ, trung thực và đáng tin cậy. Họ luôn
+                      luôn đến đúng giờ, và giá thì...tốt quá!
+                    </p>
+                    <h3 className="name-customer">Mai harimu</h3>
+                    <p className="job-customer"> Thiết kế thời trang</p>
+                  </div>
+                </div>
+              </div>
+            </Carousel.Item>
+            <Carousel.Item interval={3000}>
+              <div className="row">
+                <div className="col-md-3">
+                  <img
+                    alt=""
+                    src={require("../images/images/customer.jpg")}
+                    className="img-customer"
+                  ></img>
+                </div>
+                <div className="col-md-9">
+                  <div className="info-customer">
+                    <p>
+                      <i class="fa fa-quote-left icon-customer"></i>{" "}
+                    </p>
+                    <p className="content-review">
+                      L.A.D là một công ty cảnh quan rất tốt. Họ có nhiều dịch
+                      vụ tốt. Chúng tôi yêu họ bởi vì tất cả các nhân viên đang
+                      làm việc chăm chỉ, trung thực và đáng tin cậy. Họ luôn
+                      luôn đến đúng giờ, và giá thì...tốt quá!
+                    </p>
+                    <h3 className="name-customer">Mai harimu</h3>
+                    <p className="job-customer"> Thiết kế thời trang</p>
+                  </div>
+                </div>
+              </div>
+            </Carousel.Item>
+          </Carousel>
+        </div>
+      </article>
+      <article className="home-share">
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12">
+              <div className="txt-share">
+                <h2 className="font-title-share">
+                  GÓC CHIA SẺ, HƯỚNG DẪN THI CÔNG
+                </h2>
+                <h4 className="font-content-share">
+                  “ Sáng tạo - Tiên phong - Chất lượng vàng”.
+                </h4>
+                <div className="register">
+                  <Form.Group className="mb-3">
+                    <Form.Label
+                      style={{
+                        fontSize: "16px",
+                        fontWeight: "normal",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Đăng ký nhận tin
+                    </Form.Label>
+                    <Form.Control
+                      className="txt-email-customer"
+                      type="email"
+                      placeholder="Enter your email"
+                    />
+                    <Button
+                      className="btn-address-customer"
+                      variant="primary"
+                      type="submit"
+                    >
+                      Đăng ký
+                    </Button>
+                  </Form.Group>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article
+        className="home-project "
+        data-aos="fade-up"
+        data-aos-duration="2000"
+      >
+        <div className="container">
+          <div className="home-title">
+            <p className="font-title-home">dự án</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="ed-product">
+              <DivDesign1
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="ed-product">
+              <DivDesign2
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+            <div class="ed-product">
+              <DivDesign2
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="ed-product">
+              <DivDesign1
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="ed-product">
+              <DivDesign2
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+            <div class="ed-product">
+              <DivDesign2
+                name="Việt"
+                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
+      <article className="home-contact">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 setting-contact">
+              <div class="col-sm-6">
+                <Form.Control
+                  className="txt-input-contact"
+                  type="name"
+                  placeholder="Tên"
+                />
+                <Form.Control
+                  className="txt-input-contact"
+                  type="phone"
+                  placeholder="Số điện thoại"
+                />
+                <Form.Control
+                  className="txt-input-contact"
+                  type="email"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="col-sm-6">
+                <Form.Control
+                  style={{
+                    height: "160px",
+                    width: "225px",
+                    marginLeft: "10px",
+                    fontSize: "14px",
+                  }}
+                  as="textarea"
+                  placeholder="Tin nhắn"
+                />
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginLeft: "30px",
+                  }}
+                >
+                  <Button
+                    className="btn-address-customer"
+                    variant="primary"
+                    type="submit"
+                  >
+                    Gửi
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-6" style={{padding:"0"}}>
+              <Iframe iframe={iframe}></Iframe>
+            </div>
+          </div>
+        </div>
+      </article>
     </div>
   );
 }
