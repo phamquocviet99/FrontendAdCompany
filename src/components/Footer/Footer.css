@@ -31,20 +31,19 @@ h3 {
   color: #fff;
   list-style: none;
   padding-left: 0px;
-  font-weight: bold;
+
 }
 .txt-li {
   color: #fff;
   margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 17px;
 }
 .txt-ft {
   color: #fff;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
-  font-family: 'Imbue', serif;
+
 }
 .a-custome {
   text-decoration: none;

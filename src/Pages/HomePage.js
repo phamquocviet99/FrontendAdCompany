@@ -555,7 +555,7 @@ function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6" style={{padding:"0"}}>
+            <div className="col-md-6" style={{ padding: "0" }}>
               <Iframe iframe={iframe}></Iframe>
             </div>
           </div>

@@ -10,6 +10,8 @@ import "./App.css"
 import NavBar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
+import About from "./Pages/About"
+import Service from "./Pages/Service"
 
 function ClientLayout() {
   return (
@@ -34,6 +36,8 @@ function App() {
         <Route path="/" element={<ClientLayout />}>
           <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/service" element={<Service />} />
         </Route>
       </Routes>
     </Router>
