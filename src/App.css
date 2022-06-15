@@ -1,4 +1,30 @@
 body,
 html {
-    font-family: 'Imbue', serif;
+  font-family: "Imbue", serif;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
+}
+article {
+  padding: 40px 0;
+}
+b,
+strong {
+  font-weight: 700;
+}
+p {
+  font-size: 16px;
+}
+img {
+  vertical-align: middle;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }

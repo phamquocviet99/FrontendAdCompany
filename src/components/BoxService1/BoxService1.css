@@ -1,0 +1,31 @@
+.img-service-1 > img {
+    width: 100%;
+    object-fit: cover;
+    height: 57vh;
+  
+  }
+  .content-service-box{
+      margin: 40px 0;
+  }
+  
+  .img-service-2 > img {
+    width: 100%;
+    object-fit: cover;
+    height: 30vh;
+  }
+  .service-title {
+    color: #3e7319;
+  padding: 0 20px;
+  }
+  .service-title > h2 {
+    font-size: 25px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .service-title > p {
+    text-align: justify;
+    color: #666666;
+    font-size: 15px;
+  }

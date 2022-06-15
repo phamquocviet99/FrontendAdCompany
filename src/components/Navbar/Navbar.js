@@ -7,42 +7,42 @@ function NavBar() {
     {
       id: 1,
       name: "TRANG CHỦ",
-      link: "/home",
+      link: "/trang-chu",
     },
     {
       id: 2,
       name: "GIỚI THIỆU ",
-      link: "/about",
+      link: "/gioi-thieu",
     },
     {
       id: 3,
       name: "DỊCH VỤ",
-      link: "/service",
+      link: "/dich-vu",
     },
     {
       id: 4,
       name: "DỰ ÁN",
-      link: "/project",
+      link: "/du-an",
     },
     {
       id: 5,
       name: "SẢN PHẨM",
-      link: "/product",
+      link: "/san-pham",
     },
     {
       id: 6,
       name: "TIN TỨC",
-      link: "/news",
+      link: "/tin-tuc",
     },
     {
       id: 7,
       name: "TUYỂN DỤNG",
-      link: "/recruit",
+      link: "/tuyen-dung",
     },
     {
       id: 8,
       name: "LIÊN HỆ",
-      link: "/contact",
+      link: "/trang-chu/lien-he",
     },
   ];
   const [show, setShow] = useState(false);

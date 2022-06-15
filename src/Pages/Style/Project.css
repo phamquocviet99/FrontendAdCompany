@@ -1,0 +1,58 @@
+.banner-project-page {
+  background: linear-gradient(
+      141deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.4) 75%
+    ),
+    url("../../images/images/slider-1559119998.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.project-page {
+  padding: 40px 0;
+}
+.list-item {
+  position: relative;
+}
+.panel {
+  display: block;
+  background-color: #fff;
+  border: 3px solid rgb(6, 114, 0);
+  border-radius: 7px;
+}
+.item-cate-project > p {
+  font-size: 17px;
+  margin: 0px;
+}
+.item-cate-project {
+  color: #29582a;
+  border: 1px solid #ddd;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 2px;
+  display: flex;
+}
+.item-cate-project:hover {
+  border: 1px solid #ddd;
+  margin: 2px;
+  padding: 10px;
+  border-radius: 2px;
+  display: flex;
+  background-color: #3c763d;
+  color: #fff;
+  transition-duration: 0.5s;
+}
+.active {
+  background-color: #3c763d;
+  color: #fff;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}

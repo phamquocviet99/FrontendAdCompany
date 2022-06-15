@@ -1,0 +1,53 @@
+.banner-product-page {
+  background: linear-gradient(
+      141deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.4) 50%,
+      rgba(0, 0, 0, 0.4) 75%
+    ),
+    url("../../images/images/panel-product.jpg") no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-search {
+  height: 35px;
+  width: 100%;
+}
+.input-search {
+  height: 35px;
+  font-size: 16px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+.btn-search {
+  height: 35px;
+  background-color: #3e7319;
+  width: 50px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: #fff;
+}
+.btn-search {
+  height: 35px;
+  background-color: #3e7319;
+  width: 50px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: #fff;
+}
+.btn-search:hover {
+  height: 35px;
+  background-color: #3e7319;
+  width: 50px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: rgb(255, 136, 136);
+}
+.hidden{
+    display: none;
+}

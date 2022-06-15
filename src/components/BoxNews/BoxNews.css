@@ -1,0 +1,57 @@
+.box-news {
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+}
+.img-box-news {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  object-position: center;
+}
+/*  */
+.ed-comments-cal-right-1 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+/*  */
+.txt-box-news {
+  padding: 20px;
+}
+
+.txt-box-news > a > h2 {
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #032f3e;
+  margin: 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  height: 28px;
+}
+
+.txt-box-news > h5 {
+  width: 80%;
+  border-bottom: 2px solid #ab987a;
+  margin-bottom: 10px;
+}
+
+element.style {
+}
+.txt-box-news > p {
+  color: #6f6f6f;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 18px;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 53px;
+  text-align: justify;
+}

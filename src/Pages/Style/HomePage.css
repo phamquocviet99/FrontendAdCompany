@@ -182,6 +182,12 @@
   margin-right: 20px;
   width: 153px;
 }
+.carousel-control-next{
+  display: none;
+}
+.carousel-control-prev{
+  display: none;
+}
 .home-capacity {
   background: linear-gradient(
         141deg,

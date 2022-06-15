@@ -1,4 +1,4 @@
-.banner-service-page {
+.banner-recruit-details-page {
   background: linear-gradient(
       141deg,
       rgba(0, 0, 0, 0.3) 0%,
@@ -14,17 +14,14 @@
   justify-content: center;
   align-items: center;
 }
-.service-page-1 {
-  padding: 40px 0;
+.title-detail-design {
+  margin: 30px 0;
 }
-.img-service-1 > img {
-  width: 100%;
-  object-fit: cover;
-  height: 57vh;
-
+.title-detail-design>h2 {
+    font-size: 25px;
 }
-.content-service-box{
-    margin: 40px 0;
+.title-detail-design>h6 {
+    border-bottom: 2px solid #6bc030;
+    width: 200px;
+    margin: 10px 0;
 }
-
-
