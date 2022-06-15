@@ -515,9 +515,19 @@ function HomePage() {
               />
             </div>
           </div>
-        </div >
+        </div>
+        <div
+          className="text-center"
+          style={{
+            marginTop: "15px",
+
+          }}
+         
+        >
+          <button  ref={contact} className="btn btn-outline-success">XEM THÊM</button>
+        </div>
       </article>
-      <article  className="home-contact"ref={contact}>
+      <article className="home-contact" >
         <div className="container">
           <div className="row">
             <div className="col-md-6 setting-contact">
