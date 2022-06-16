@@ -18,6 +18,7 @@ import DetailsRecruit from "./Pages/DetailsRecruit";
 import News from "./Pages/News"
 import Product from "./Pages/Product"
 import ProductDetails from "./Pages/ProductDetails";
+import DetailsProject from "./Pages/DetailsProject";
 
 function ClientLayout() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/tin-tuc" element={<News />} />
           <Route path="/san-pham" element={<Product />} />
           <Route path="/san-pham/chi-tiet" element={<ProductDetails />} />
+          <Route path="/du-an/chi-tiet" element={<DetailsProject />} />
         </Route>
       </Routes>
     </Router>

@@ -21,7 +21,7 @@ function BoxNewsFull(props) {
             </p>
           </div>
           <div className="see-more">
-            <a href="/">
+            <a href="/du-an/chi-tiet">
               <i class="fa fa-arrow-right"></i>
               Xem thêm
             </a>

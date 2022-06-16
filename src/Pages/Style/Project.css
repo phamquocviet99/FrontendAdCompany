@@ -48,10 +48,10 @@
   color: #fff;
   transition-duration: 0.5s;
 }
-.active {
+/* .active {
   background-color: #3c763d;
   color: #fff;
-}
+} */
 .pagination {
   display: flex;
   justify-content: center;

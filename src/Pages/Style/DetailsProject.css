@@ -1,0 +1,43 @@
+.title-library {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.group-button-library > button {
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #3e7319;
+}
+.group-button-library > button:hover {
+
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 16px;
+  background-color: #3e7319;
+  border: #3e7319;
+}
+
+.vertical-line {
+  width: 2px;
+  background-color: darkblue;
+}
+.group-button-library {
+  display: flex;
+  justify-content: center;
+  
+}
+
+element.style {
+  transform: translate3d(0px, 0px, 0px);
+  transition-duration: 1000ms;
+}
+.carousel .thumbs {
+  transition: all .15s ease-in;
+  transform: translate3d(0, 0, 0);
+  position: relative;
+  list-style: none;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+}
