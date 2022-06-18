@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Navbar, Nav } from "react-bootstrap";
+
 import "./Navbar.css";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 function NavBar() {
   const listItem = [
@@ -56,7 +57,7 @@ function NavBar() {
       collapseOnSelect
       style={{ padding: "0" }}
     >
-      <div className="container">
+      <div className=" container  ">
         <Navbar.Brand href="/" style={{ padding: "0" }}>
           <img
             className="img-logo-navbar"

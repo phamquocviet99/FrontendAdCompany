@@ -1,6 +1,8 @@
 body,
 html {
-  font-family: "Imbue", serif;
+  /* font-family: Roboto, sans-serif;
+} */
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 a {
   text-decoration: none;
@@ -27,4 +29,9 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: 500;
+  line-height: 1.1;
 }
