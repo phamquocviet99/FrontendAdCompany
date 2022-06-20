@@ -133,3 +133,25 @@
 .inner-carousel-partner {
   display: flex;
 }
+@media screen and (max-width: 760px) {
+  .txt-about {
+    padding: 30px;
+    text-align: justify;
+  }
+  .bocviengoai {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+  }
+  .ed-border-picabout {
+    border: 5px solid #3e7319;
+    height: 350px;
+    width: 100%;
+  }
+  .ed-picabout > img {
+    width: 100%;
+
+    max-width: 100%;
+    height: auto;
+  }
+}
