@@ -185,6 +185,7 @@ function HomePage() {
               className="col-md-7 col-xs-12"
               data-aos="fade-right"
               data-aos-duration="2000"
+              style={{ marginBottom: "20px" }}
             >
               <div className="box-news">
                 <div className="div-news"></div>
@@ -520,14 +521,14 @@ function HomePage() {
           className="text-center"
           style={{
             marginTop: "15px",
-
           }}
-         
         >
-          <button  ref={contact} className="btn btn-outline-success">XEM THÊM</button>
+          <button ref={contact} className="btn btn-outline-success">
+            XEM THÊM
+          </button>
         </div>
       </article>
-      <article className="home-contact" >
+      <article className="home-contact">
         <div className="container">
           <div className="row">
             <div className="col-md-6 setting-contact">
@@ -550,12 +551,8 @@ function HomePage() {
               </div>
               <div class="col-sm-6">
                 <Form.Control
-                  style={{
-                    height: "160px",
-                    width: "225px",
-                    marginLeft: "10px",
-                    fontSize: "14px",
-                  }}
+                  className="aera-txt-home"
+                  style={{ height: "225px" }}
                   as="textarea"
                   placeholder="Tin nhắn"
                 />

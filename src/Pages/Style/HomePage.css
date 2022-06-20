@@ -182,10 +182,10 @@
   margin-right: 20px;
   width: 153px;
 }
-.carousel-control-next{
+.carousel-control-next {
   display: none;
 }
-.carousel-control-prev{
+.carousel-control-prev {
   display: none;
 }
 .home-capacity {
@@ -229,9 +229,9 @@
 }
 .home-project {
   padding: 40px 0;
-  background-color:#F7F7F7;
+  background-color: #f7f7f7;
 }
-.home-contact{
+.home-contact {
   background-color: #fff;
   padding: 40px 0;
 }
@@ -243,7 +243,6 @@
 .info-customer {
   padding: 20px 0;
   margin-left: 40px;
-  
 }
 .icon-customer {
   color: #2b7000;
@@ -313,22 +312,32 @@
   border-color: #124a2f;
   font-size: 14px;
 }
-.ed-product{
+.ed-product {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 .setting-contact {
-  background: linear-gradient(141deg, rgba(0, 0, 0, 0.44) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.53) 75%), url("../../images//images/banner-contact.jpg") no-repeat;
+  background: linear-gradient(
+      141deg,
+      rgba(0, 0, 0, 0.44) 0%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(0, 0, 0, 0.53) 75%
+    ),
+    url("../../images//images/banner-contact.jpg") no-repeat;
   padding: 40px;
   background-size: cover;
 }
-.txt-input-contact{
+.txt-input-contact {
   height: 40px;
   width: 225px;
   font-size: 14px;
   margin-bottom: 20px;
 }
-
+.aera-txt-home {
+  height: 160px;
+  width: 225px;
+  font-size: 14px;
+}
 
 @media screen and (max-width: 760px) {
   .box-about {
@@ -342,5 +351,37 @@
     top: 0em;
     right: 0em;
     width: 100%;
+  }
+  .ed-capacity {
+    padding: 30px;
+    background: rgba(27, 62, 7, 0.7);
+    color: #fff;
+  }
+  .font-txt-capacity {
+    font-size: 22px;
+    margin: 0;
+    margin-left: 20px;
+  }
+  .home-share {
+    padding: 0;
+    background: linear-gradient(
+          141deg,
+          rgba(0, 0, 0, 0.6) 0%,
+          rgba(0, 0, 0, 0.8) 50%,
+          rgba(0, 0, 0, 0.6) 75%
+        )
+        0% 0% / cover,
+      url("../../images//images/share.jpg") no-repeat;
+    visibility: visible;
+  }
+  .txt-input-contact {
+    height: 40px;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .aera-txt-home {
+    width: 100%;
+    font-size: 14px;
   }
 }
