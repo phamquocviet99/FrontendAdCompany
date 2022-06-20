@@ -4,6 +4,7 @@ import { Carousel, Form, Button, FloatingLabel } from "react-bootstrap";
 import DivDesign1 from "../components/DivDesign1/DivDesign1";
 import DivDesign2 from "../components/DivDesign2/DivDesign2";
 import Iframe from "../components/Iframe/Iframe";
+import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
 import "./Style/HomePage.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -227,69 +228,8 @@ function HomePage() {
               data-aos="fade-left"
               data-aos-duration="2000"
             >
-              <div className="box-news-right">
-                <img
-                  alt=""
-                  src={require("../images/images/news-1563348634.jpg")}
-                  className="img-news"
-                ></img>
-                <h2 className="title-inline" style={{ paddingRight: "20px" }}>
-                  Cách chọn mai chơi tết
-                </h2>
-                <div class="ed-comments-cal-right">
-                  <div class="ed-comment-right">
-                    <i class="fa fa-eye icon-news-home-right"></i>
-                    <br /> 915
-                  </div>
-                  <div class="ed-calendar-right">
-                    <i class="fa fa-calendar icon-news-home-right"></i>
-                    <br />
-                    01/2021
-                  </div>
-                </div>
-              </div>
-              <div className="box-news-right">
-                <img
-                  alt=""
-                  src={require("../images/images/news-1563348634.jpg")}
-                  className="img-news"
-                ></img>
-                <h2 className="title-inline" style={{ paddingRight: "20px" }}>
-                  Cách chọn mai chơi tết
-                </h2>
-                <div class="ed-comments-cal-right">
-                  <div class="ed-comment-right">
-                    <i class="fa fa-eye icon-news-home-right"></i>
-                    <br /> 915
-                  </div>
-                  <div class="ed-calendar-right">
-                    <i class="fa fa-calendar icon-news-home-right"></i>
-                    <br />
-                    01/2021
-                  </div>
-                </div>
-              </div>
-              <div className="box-news-right">
-                <img
-                  alt=""
-                  src={require("../images/images/news-1563348634.jpg")}
-                  className="img-news"
-                ></img>
-                <h2 className="title-inline" style={{ paddingRight: "20px" }}>
-                  Cách chọn mai chơi tết
-                </h2>
-                <div class="ed-comments-cal-right">
-                  <div class="ed-comment-right">
-                    <i class="fa fa-eye icon-news-home-right"></i>
-                    <br /> 915
-                  </div>
-                  <div class="ed-calendar-right">
-                    <i class="fa fa-calendar icon-news-home-right"></i>
-                    <br />
-                    01/2021
-                  </div>
-                </div>
-              </div>
+              <BoxNewsRight />
+              <BoxNewsRight /> <BoxNewsRight />
             </div>
           </div>
           <div

@@ -19,6 +19,7 @@ import News from "./Pages/News"
 import Product from "./Pages/Product"
 import ProductDetails from "./Pages/ProductDetails";
 import DetailsProject from "./Pages/DetailsProject";
+import DetailsNews from "./Pages/DetailsNews";
 
 function ClientLayout() {
   return (
@@ -36,6 +37,7 @@ function AdminLayout() {
     </div>
   );
 }
+
 function App() {
   return (
     <Router>
@@ -48,11 +50,12 @@ function App() {
           <Route path="/dich-vu" element={<Service />} />
           <Route path="/du-an" element={<Project />} />
           <Route path="/tuyen-dung" element={<Recruit />} />
-          <Route path="/detail-recruit" element={<DetailsRecruit />} />
+          <Route path="/tuyen-dung/chi-tiet" element={<DetailsRecruit />} />
           <Route path="/tin-tuc" element={<News />} />
           <Route path="/san-pham" element={<Product />} />
           <Route path="/san-pham/chi-tiet" element={<ProductDetails />} />
           <Route path="/du-an/chi-tiet" element={<DetailsProject />} />
+          <Route path="/tin-tuc/chi-tiet" element={<DetailsNews />} />
         </Route>
       </Routes>
     </Router>

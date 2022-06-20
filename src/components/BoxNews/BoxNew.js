@@ -4,7 +4,7 @@ import "./BoxNews.css";
 function BoxNew(props) {
   return (
     <div className="box-news">
-      <a href="/">
+      <a href="/tin-tuc/chi-tiet">
         <img
           className="img-box-news"
           alt=""

@@ -43,7 +43,8 @@ function Recruit() {
                     alignItems: "center",
                   }}
                 >
-                  <a href="/detail-recruit"
+                  <a
+                    href="/tuyen-dung/chi-tiet"
                     className="text-center"
                     style={{ marginTop: "20px", marginBottom: "30px" }}
                   >

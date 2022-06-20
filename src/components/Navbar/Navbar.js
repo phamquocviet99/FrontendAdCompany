@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Navbar, Nav, Container } from "react-bootstrap";
 
-function NavBar() {
+function NavBar(props) {
+  const { location } = props;
   const listItem = [
     {
       id: 1,
@@ -46,6 +47,8 @@ function NavBar() {
       link: "/trang-chu/lien-he",
     },
   ];
+  // function SaveCurrentNav(id) {}
+  console.log(window.location.pathname.split("/").slice(1)[0]);
   const [show, setShow] = useState(false);
   const changeNavbarColor = () => {};
   window.addEventListener("scroll", changeNavbarColor);
@@ -70,7 +73,16 @@ function NavBar() {
           <Nav className="justify-content-center" style={{ width: "100%" }}>
             {listItem.map((item) => (
               <Nav.Link className="nav-links" href={item.link} key={item.id}>
-                <span className="text">{item.name}</span>
+                <span
+                  className={
+                    "/" + window.location.pathname.split("/").slice(1)[0] ===
+                    item.link
+                      ? "text-active"
+                      : "text"
+                  }
+                >
+                  {item.name}
+                </span>
               </Nav.Link>
             ))}
           </Nav>

@@ -1,9 +1,29 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import "./Footer.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import InformationApi from "../../api/InformationApi";
 
 function Footer() {
+  const [information, setInformation] = useState({});
+  useEffect(() => {
+    const fetchInfor = async () => {
+      try {
+        const response = await InformationApi.getById(
+          "62b0756892dfc7d99e74b340"
+        );
+        const data = JSON.parse(JSON.stringify(response));
+        // setInformation(data);
+        if(!data.error){
+        setInformation(data.inforCompany)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchInfor();
+  }, []);
+  //
   useEffect(() => {
     Aos.init({ duration: 1000 });
   }, []);
@@ -19,14 +39,13 @@ function Footer() {
             <div className="row">
               <div className="col-md-6 ">
                 <h4 className="title-ft">Liên hệ</h4>
-                <h3 className="txt-ft">CÔNG TY CỔ PHẦN ĐẦU TƯ L.A.D</h3>
+                <h3 className="txt-ft">{information.name}</h3>
                 <ul className="custome-ul-left">
                   <li className=" txt-li">
-                    Địa chỉ: D20, KDC Phước Nguyễn Hưng, Nguyễn Hữu Thọ, Ấp 5,
-                    Xã Phước Kiển, Huyện Nhà Bè, Tp.Hồ Chí Minh
+                    Địa chỉ: {information.address}
                   </li>
-                  <li className="txt-li">Hotline: 0903.699.664</li>
-                  <li className="txt-li">Email: Lad.jsc168@gmail.com</li>
+                  <li className="txt-li">Hotline: {information.phone}</li>
+                  <li className="txt-li">Email: {information.email}</li>
                 </ul>
               </div>
               <div className="col-md-6 ">
