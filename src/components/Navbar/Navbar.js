@@ -48,7 +48,6 @@ function NavBar(props) {
     },
   ];
   // function SaveCurrentNav(id) {}
-  console.log(window.location.pathname.split("/").slice(1)[0]);
   const [show, setShow] = useState(false);
   const changeNavbarColor = () => {};
   window.addEventListener("scroll", changeNavbarColor);

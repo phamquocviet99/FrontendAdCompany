@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import "./App.css"
 import NavBar from "./components/Navbar/Navbar";
+import LayoutNav from "./components/Slidebar/LayoutNav";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
 import About from "./Pages/About"
@@ -20,6 +21,7 @@ import Product from "./Pages/Product"
 import ProductDetails from "./Pages/ProductDetails";
 import DetailsProject from "./Pages/DetailsProject";
 import DetailsNews from "./Pages/DetailsNews";
+import CategoryProject from "./Admin/CategoryProject/CategoryProject";
 
 function ClientLayout() {
   return (
@@ -33,6 +35,7 @@ function ClientLayout() {
 function AdminLayout() {
   return (
     <div>
+      <LayoutNav/>
       <Outlet />
     </div>
   );
@@ -56,6 +59,10 @@ function App() {
           <Route path="/san-pham/chi-tiet" element={<ProductDetails />} />
           <Route path="/du-an/chi-tiet" element={<DetailsProject />} />
           <Route path="/tin-tuc/chi-tiet" element={<DetailsNews />} />
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route path="/admin" element={<Navigate replace to="/admin/danh-muc-du-an" />}/>
+          <Route path="/admin/danh-muc-du-an" element={<CategoryProject />}/>
         </Route>
       </Routes>
     </Router>

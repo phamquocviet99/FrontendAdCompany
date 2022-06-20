@@ -1,0 +1,51 @@
+.tool-bar {
+  background-color: #494949;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 2rem 3rem;
+  position: relative;
+}
+.side-bar {
+  position: absolute;
+  background-color: #494949;
+  color: white;
+
+  left: 0;
+  transform: translateX(-100%);
+  transition: all 0.4s;
+}
+
+.side-bar > a {
+  padding: 2rem 3rem;
+  font-size: 20px;
+  border-bottom: solid rgba(255, 255, 255, 0.1) 1px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 300;
+}
+.side-bar a:hover {
+  background-color: #fff;
+  color: #000;
+  transition-duration: 0.1s;
+}
+.side-bar--open {
+  transform: translateX(0%);
+}
+.backdrop {
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.519);
+  display: none;
+}
+.backdrop--open {
+  display: block;
+}
+.title-admin {
+  font-size: 25px;
+  margin-left: 20px;
+}
