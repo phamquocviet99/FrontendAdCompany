@@ -6,22 +6,23 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import "./App.css"
+import "./App.css";
 import NavBar from "./components/Navbar/Navbar";
 import LayoutNav from "./components/Slidebar/LayoutNav";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./Pages/HomePage";
-import About from "./Pages/About"
-import Service from "./Pages/Service"
-import Project from "./Pages/Project"
-import Recruit from "./Pages/Recruit"
+import About from "./Pages/About";
+import Service from "./Pages/Service";
+import Project from "./Pages/Project";
+import Recruit from "./Pages/Recruit";
 import DetailsRecruit from "./Pages/DetailsRecruit";
-import News from "./Pages/News"
-import Product from "./Pages/Product"
+import News from "./Pages/News";
+import Product from "./Pages/Product";
 import ProductDetails from "./Pages/ProductDetails";
 import DetailsProject from "./Pages/DetailsProject";
 import DetailsNews from "./Pages/DetailsNews";
 import CategoryProject from "./Admin/CategoryProject/CategoryProject";
+import Login from "./Admin/Login/Login";
 
 function ClientLayout() {
   return (
@@ -32,13 +33,16 @@ function ClientLayout() {
     </div>
   );
 }
+const userData = JSON.parse(localStorage.getItem("user"));
 function AdminLayout() {
-  return (
-    <div>
-      <LayoutNav/>
-      <Outlet />
-    </div>
-  );
+  if (userData) {
+    return (
+      <div>
+        <LayoutNav />
+        <Outlet />
+      </div>
+    );
+  }
 }
 
 function App() {
@@ -60,9 +64,14 @@ function App() {
           <Route path="/du-an/chi-tiet" element={<DetailsProject />} />
           <Route path="/tin-tuc/chi-tiet" element={<DetailsNews />} />
         </Route>
+        <Route path="/dang-nhap" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="/admin" element={<Navigate replace to="/admin/danh-muc-du-an" />}/>
-          <Route path="/admin/danh-muc-du-an" element={<CategoryProject />}/>
+          <Route
+            path="/admin"
+            element={<Navigate replace to="/admin/danh-muc-du-an" />}
+          />
+
+          <Route path="/admin/danh-muc-du-an" element={<CategoryProject />} />
         </Route>
       </Routes>
     </Router>
