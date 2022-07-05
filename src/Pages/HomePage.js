@@ -1,6 +1,6 @@
-import { React, useEffect, useRef } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
-import { Carousel, Form, Button, FloatingLabel } from "react-bootstrap";
+import { Carousel, Form, Button } from "react-bootstrap";
 import DivDesign1 from "../components/DivDesign1/DivDesign1";
 import DivDesign2 from "../components/DivDesign2/DivDesign2";
 import Iframe from "../components/Iframe/Iframe";
@@ -8,15 +8,53 @@ import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
 import "./Style/HomePage.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import NewsApi from "../api/NewsApi";
+import ProjectApi from "../api/ProjectApi";
 
+function ChangeDate(text) {
+  if (!text) return;
+  return text.substring(8, 10) + "/" + text.substring(5, 7);
+}
 function HomePage() {
   const params = useParams();
   const contact = useRef(null);
+  const [listNews, setListNews] = useState([]);
+  const [listProject, setListProject] = useState([]);
+
   useEffect(() => {
+    document.title ="TRANG CHỦ"
     const executeScroll = () => contact.current.scrollIntoView();
     if (params.params !== undefined) {
       executeScroll();
     }
+  }, []);
+  useEffect(() => {
+    const FetchListNews = async () => {
+      try {
+        const response = await NewsApi.getAll({ page: 0, limit: 4 });
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListNews(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchListNews();
+  }, []);
+  useEffect(() => {
+    const FetchListProject = async () => {
+      try {
+        const response = await ProjectApi.getAll({ page: 0, limit: 6 });
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListProject(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchListProject();
   }, []);
   useEffect(() => {
     Aos.init({ duration: 2000 });
@@ -24,7 +62,7 @@ function HomePage() {
   const iframe =
     '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7840.48626187924!2d106.69834301505135!3d10.715721187147192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zRDIwLCBLREMgUGjGsOG7m2MgTmd1eeG7hW4gSMawbmcsIE5ndXnhu4VuIEjhu691IFRo4buNLCDhuqRwIDUsIFjDoyBQaMaw4bubYyBLaeG7g24sIEh1eeG7h24gTmjDoCBCw6gsIFRwLkjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1654932574737!5m2!1svi!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 
-  const executeScroll = () => contact.current.scrollIntoView();
+  // const executeScroll = () => contact.current.scrollIntoView();
   return (
     <div className="content-home">
       <Carousel fade>
@@ -149,7 +187,7 @@ function HomePage() {
               </div>
               <div className="col-lg-12 ">
                 <div className="text-center" style={{ marginTop: "15px" }}>
-                  <button className="btn btn-outline-success">XEM THÊM</button>
+                  <a href="/dich-vu" className="btn btn-outline-success">XEM THÊM</a>
                 </div>
               </div>
             </div>
@@ -189,22 +227,28 @@ function HomePage() {
               style={{ marginBottom: "20px" }}
             >
               <div className="box-news">
-                <div className="div-news"></div>
-                <div class="ed-comments-cal">
-                  <div class="ed-comment">
-                    <i class="fa fa-eye icon-news-home"></i>
-                    <br /> 915
+                <div
+                  style={{
+                    backgroundImage: `url(${listNews[0]?.urlImage})`,
+                    backgroundSize: "cover",
+                    height: "200px",
+                    width: "100%",
+                  }}
+                  
+                ></div>
+                <div className="ed-comments-cal">
+                  <div className="ed-comment">
+                    <i className="fa fa-eye icon-news-home"></i>
+                    <br /> {listNews[0]?.view}
                   </div>
-                  <div class="ed-calendar">
-                    <i class="fa fa-calendar icon-news-home"></i>
+                  <div className="ed-calendar">
+                    <i className="fa fa-calendar icon-news-home"></i>
                     <br />
-                    01/2021
+                    {ChangeDate(listNews[0]?.createdAt)}
                   </div>
                 </div>
                 <div className="txt-news">
-                  <h2 className="title-inline">
-                    YẾU TỐ CẢNH QUAN TRONG RESORT
-                  </h2>
+                  <h2 className="title-inline">{listNews[0]?.name}</h2>
                   <div
                     style={{
                       width: "85%",
@@ -214,11 +258,7 @@ function HomePage() {
                     }}
                   ></div>
                   <p className="content-box-about" style={{ marginTop: "0px" }}>
-                    Dưới góc độ nghề Quy hoạch và Kiến trúc, Resort là một trong
-                    những loại hình công trình có nhiều cảm hứng sang tác nhất
-                    với những ý tưởng xuất phát từ những giá trị sinh thái tự
-                    nhiên và nhân văn nơi công trình tồn tại. Resort không chỉ
-                    đơn gian là phòng ngủ, nơi lưu trú với dịch vụ tiện nghi m
+                   <a className="txt-news-hom" href={`/tin-tuc/chi-tiet/${listNews[0]?._id}`}>{listNews[0]?.summary}</a>
                   </p>
                 </div>
               </div>
@@ -228,17 +268,18 @@ function HomePage() {
               data-aos="fade-left"
               data-aos-duration="2000"
             >
-              <BoxNewsRight />
-              <BoxNewsRight /> <BoxNewsRight />
+              {listNews?.map((n, index) =>
+                index !== 0 ? <BoxNewsRight news={n} /> : <></>
+              )}
             </div>
           </div>
           <div
             className="text-center"
             style={{ marginTop: "20px", marginBottom: "30px" }}
           >
-            <button onClick={executeScroll} className="btn btn-outline-success">
+            <a href="/tin-tuc"  className="btn btn-outline-success">
               XEM THÊM
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -415,44 +456,40 @@ function HomePage() {
           <div class="col-md-3 col-sm-6">
             <div class="ed-product">
               <DivDesign1
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              project={listProject[0]}
+               
               />
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="ed-product">
               <DivDesign2
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              
+              project={listProject[1]}
               />
             </div>
             <div class="ed-product">
               <DivDesign2
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+               project={listProject[2]}
               />
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="ed-product">
               <DivDesign1
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+                project={listProject[3]}
               />
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
             <div class="ed-product">
               <DivDesign2
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+              project={listProject[4]}
               />
             </div>
             <div class="ed-product">
               <DivDesign2
-                name="Việt"
-                image="http://web.archive.org/web/20200728013712im_/http://lad-corp.com/images/design/c4545d88108c3ead5bd30be8043ae5aa0.jpg"
+             project={listProject[5]}
               />
             </div>
           </div>
@@ -463,9 +500,9 @@ function HomePage() {
             marginTop: "15px",
           }}
         >
-          <button ref={contact} className="btn btn-outline-success">
+          <a href="/du-an" ref={contact} className="btn btn-outline-success">
             XEM THÊM
-          </button>
+          </a>
         </div>
       </article>
       <article className="home-contact">
@@ -492,7 +529,7 @@ function HomePage() {
               <div class="col-sm-6">
                 <Form.Control
                   className="aera-txt-home"
-                  style={{ height: "225px" }}
+                  style={{ height: "160px" }}
                   as="textarea"
                   placeholder="Tin nhắn"
                 />

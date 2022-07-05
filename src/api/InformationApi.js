@@ -1,16 +1,14 @@
-import axiosClient from "./axiosClient"
-
+import axiosClient from "./axiosClient";
 
 const InformationApi = {
-    getAll : (params) => {
-        const url =  '/information'
-        return axiosClient.get(url, {params});
-    },
-
-    getById : (id) => {
-        const url =  `/information/${id}`;
-        return axiosClient.get(url);
-    }
-}
+  getById: (id) => {
+    const url = `/information/${id}`;
+    return axiosClient.get(url);
+  },
+  update: (id, data) => {
+    const url = `/information/${id}`;
+    return axiosClient.put(url, data);
+  },
+};
 
 export default InformationApi;

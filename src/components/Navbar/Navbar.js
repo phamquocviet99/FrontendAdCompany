@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Navbar.css";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 function NavBar(props) {
   const { location } = props;
+
   const listItem = [
     {
       id: 1,
@@ -50,6 +51,7 @@ function NavBar(props) {
   // function SaveCurrentNav(id) {}
   const [show, setShow] = useState(false);
   const changeNavbarColor = () => {};
+
   window.addEventListener("scroll", changeNavbarColor);
   return (
     <Navbar

@@ -1,13 +1,46 @@
 import { React, useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import "./Style/About.css";
+import PartnerApi from "../api/PartnerApi";
+import ProjectApi from "../api/ProjectApi";
 
 function About() {
   const [width, setWidth] = useState(0);
+  const [listPartner, setListPartner] = useState([]);
+  const [listProject, setListProject] = useState([]);
   const carousel = useRef();
-  useEffect(()=>{
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
-  },[])
+  useEffect(() => {
+    const FetchFullPartner = async () => {
+      document.title="GIỚI THIỆU"
+      try {
+        const response = await PartnerApi.getAll();
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListPartner(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchFullPartner();
+  }, []);
+  useEffect(() => {
+    const FetchListProject = async () => {
+      try {
+        const response = await ProjectApi.getAll({ page: 0, limit: 3 });
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListProject(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchListProject();
+  }, []);
+  useEffect(() => {
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+  }, []);
   return (
     <div className="content-about-page">
       <div className="banner-about-page">
@@ -129,96 +162,32 @@ function About() {
             <p className="font-title-home">Dự án</p>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <div className="box-news-full">
-                <img alt="" src={require("../images/images/12.jpg")} />
-                <div className="row infor-news-full">
-                  <div className="col-xs-12 title-post ed-food-title">
-                    <h2>cải tạo văn phòng novaland</h2>
-                    <div className="txt-news-full limit-text-about">
-                      <p>
-                        Chủ đầu tư:&nbsp;Anh Hiệp Địa điểm:&nbsp;Vĩnh Long Diện
-                        tích:&nbsp;120 m² Dịch vụ:&nbsp;Thiết kế kiến trúc - nội
-                        thất Thiết kế nội thất theo phong cách hiện đại luôn
-                        được đông đảo người yêu thích và lựa chọn. Bởi chúng đem
-                        lại sự tích cực, tiện nghi và sang trọng cho không gian
-                        sống. Thiết kế sử dụng gam màu trắng&nbsp;làm nền chủ
-                        đạo đã&nbsp;nổi bật toàn bộ&nbsp;nội thất với các gam
-                        màu tối trong căn nhà. Thêm vào đó ánh sáng đèn phối hợp
-                        với ánh sáng thiên nhiên&nbsp;được bố trí hài hòa tạo
-                        cảm giác không gian rộng rãi và rất thoáng đãng.
-                      </p>
-                    </div>
-                    <div className="see-more">
-                      <a href="/">
-                        <i class="fa fa-arrow-right"></i>
-                        Xem thêm
-                      </a>
+            {listProject?.map((p, index) => (
+              <div className="col-md-4">
+                <div className="box-news-full">
+                  <img alt="" src={p?.image[0]?.url} />
+                  <div className="row infor-news-full">
+                    <div className="col-xs-12 title-post ed-food-title">
+                      <h2>{p?.name}</h2>
+                      <div className="txt-news-full limit-text-about">
+                        <p>
+                         <p>Chủ đầu tư : <span>{p?.investor}</span></p>
+                         <p>Dịch vụ : <span>{p?.nameCategory}</span></p>
+                         <p>Địa điểm : <span>{p?.location}</span></p>
+                        </p>
+                      </div>
+                      <div className="see-more">
+                        <a href={`/du-an/chi-tiet/${p?._id}`}>
+                          <i class="fa fa-arrow-right"></i>
+                          Xem thêm
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="box-news-full">
-                <img alt="" src={require("../images/images/12.jpg")} />
-                <div className="row infor-news-full">
-                  <div className="col-xs-12 title-post ed-food-title">
-                    <h2>cải tạo văn phòng novaland</h2>
-                    <div className="txt-news-full limit-text-about">
-                      <p>
-                        Chủ đầu tư:&nbsp;Anh Hiệp Địa điểm:&nbsp;Vĩnh Long Diện
-                        tích:&nbsp;120 m² Dịch vụ:&nbsp;Thiết kế kiến trúc - nội
-                        thất Thiết kế nội thất theo phong cách hiện đại luôn
-                        được đông đảo người yêu thích và lựa chọn. Bởi chúng đem
-                        lại sự tích cực, tiện nghi và sang trọng cho không gian
-                        sống. Thiết kế sử dụng gam màu trắng&nbsp;làm nền chủ
-                        đạo đã&nbsp;nổi bật toàn bộ&nbsp;nội thất với các gam
-                        màu tối trong căn nhà. Thêm vào đó ánh sáng đèn phối hợp
-                        với ánh sáng thiên nhiên&nbsp;được bố trí hài hòa tạo
-                        cảm giác không gian rộng rãi và rất thoáng đãng.
-                      </p>
-                    </div>
-                    <div className="see-more">
-                      <a href="/">
-                        <i class="fa fa-arrow-right"></i>
-                        Xem thêm
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="box-news-full">
-                <img alt="" src={require("../images/images/12.jpg")} />
-                <div className="row infor-news-full">
-                  <div className="col-xs-12 title-post ed-food-title">
-                    <h2>cải tạo văn phòng novaland</h2>
-                    <div className="txt-news-full limit-text-about">
-                      <p>
-                        Chủ đầu tư:&nbsp;Anh Hiệp Địa điểm:&nbsp;Vĩnh Long Diện
-                        tích:&nbsp;120 m² Dịch vụ:&nbsp;Thiết kế kiến trúc - nội
-                        thất Thiết kế nội thất theo phong cách hiện đại luôn
-                        được đông đảo người yêu thích và lựa chọn. Bởi chúng đem
-                        lại sự tích cực, tiện nghi và sang trọng cho không gian
-                        sống. Thiết kế sử dụng gam màu trắng&nbsp;làm nền chủ
-                        đạo đã&nbsp;nổi bật toàn bộ&nbsp;nội thất với các gam
-                        màu tối trong căn nhà. Thêm vào đó ánh sáng đèn phối hợp
-                        với ánh sáng thiên nhiên&nbsp;được bố trí hài hòa tạo
-                        cảm giác không gian rộng rãi và rất thoáng đãng.
-                      </p>
-                    </div>
-                    <div className="see-more">
-                      <a href="/">
-                        <i class="fa fa-arrow-right"></i>
-                        Xem thêm
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
+
             <div className="col-lg-12 ">
               <div className="text-center" style={{ marginTop: "15px" }}>
                 <button className="btn btn-outline-success">XEM THÊM</button>
@@ -238,42 +207,11 @@ function About() {
               dragConstraints={{ right: 0, left: -width }}
               className="inner-carousel-partner"
             >
-              <motion.div className="  item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
-              <motion.div className="  item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
-              <motion.div className="  item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
-              <motion.div className=" item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
-              <motion.div className="  item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
-              <motion.div className="  item-img-partner">
-                <img
-                  alt=""
-                  src={require("../images/images/image-1529645195.jpg")}
-                ></img>
-              </motion.div>
+              {listPartner?.map((p, index) => (
+                <motion.div key={index} className="  item-img-partner">
+                  <img alt={p.nameImage} src={p?.urlImage}></img>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>

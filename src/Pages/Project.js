@@ -1,15 +1,74 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Style/Project.css";
 import { motion } from "framer-motion";
 import BoxNewsFull from "../components/BoxNewsFull/BoxNewsFull";
+import CategoryProjectApi from "../api/CategoryProjectApi";
+import ProjectApi from "../api/ProjectApi";
+import { useParams } from "react-router-dom";
 function Project() {
-  const listProjectCategory = [
-    { id: 1, name: "Tất cả" },
-    { id: 2, name: "Thiết kế Cảnh quan" },
-    { id: 3, name: "Thiết kế Kiến trúc - Nội thất" },
-    { id: 4, name: "Thi công Cảnh quan" },
-    { id: 5, name: "Chăm sóc - bảo dưỡng cây cảnh" },
-  ];
+  const { id } = useParams();
+  const [listCategory, setListCategory] = useState([]);
+  const [listProject, setListProject] = useState([]);
+  const [pagination, setPagination] = useState({
+    page: 0,
+    limit: 2,
+    countRows: 1,
+  });
+  const [filters, setFilters] = useState({
+    limit: 2,
+    page: 0,
+  });
+  const totalPages = Math.ceil(pagination.countRows / pagination.limit);
+  useEffect(() => {
+    document.title="DỰ ÁN"
+    const FetchListCategory = async () => {
+      try {
+        const response = await CategoryProjectApi.getAll();
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListCategory(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchListCategory();
+  }, []);
+  useEffect(() => {
+    const FetchListProject = async () => {
+      try {
+        const response = await ProjectApi.getAll(filters);
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListProject(data.data);
+          setPagination(data.pageInfo);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const FetchListProjectByIDCate = async () => {
+      try {
+        const response = await ProjectApi.getByIdCate(id, filters);
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListProject(data.data);
+          setPagination(data.pageInfo);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (id === undefined) {
+      FetchListProject();
+    } else {
+      FetchListProjectByIDCate();
+    }
+  }, [id,filters]);
+  function handlePageChange(newPage) {
+    setPagination({ ...pagination, page: newPage });
+    setFilters({ ...filters, page: newPage });
+  }
   return (
     <div>
       <div className="banner-project-page">
@@ -40,8 +99,15 @@ function Project() {
                   </p>
                 </div>
                 <div className="list-item panel">
-                  {listProjectCategory.map((item) => (
-                    <a href="/" className="item-cate-project " key={item.id}>
+                  <a href="/du-an" className="item-cate-project ">
+                    <p>Tất cả</p>
+                  </a>
+                  {listCategory?.map((item) => (
+                    <a
+                      href={`/du-an/${item._id}`}
+                      className="item-cate-project "
+                      key={item.id}
+                    >
                       <p>{item.name}</p>
                     </a>
                   ))}
@@ -49,26 +115,29 @@ function Project() {
               </div>
             </div>
             <div className="col-lg-9">
-              <div className="col-sm-4">
-                <BoxNewsFull />
-                <BoxNewsFull />
-                <BoxNewsFull />
-              </div>
-              <div className="col-sm-4">
-                <BoxNewsFull />
-                <BoxNewsFull />
-                <BoxNewsFull />
-              </div>
-              <div className="col-sm-4">
-                <BoxNewsFull />
-                <BoxNewsFull />
-                <BoxNewsFull />
-              </div>
+              {listProject?.map((p, index) => (
+                <div className="col-sm-4">
+                  <BoxNewsFull project={p} />
+                </div>
+              ))}
             </div>
           </div>
           <div className="pagination">
-            <button style={{marginRight :"10px"}} className="btn btn-outline-success">Quay lại</button>
-            <button className="btn btn-outline-success">Xem thêm</button>
+            <button
+              style={{ marginRight: "10px" }}
+              className="btn btn-outline-success"
+              disabled={pagination.page <= 0}
+              onClick={() => handlePageChange(pagination.page - 1)}
+            >
+              Quay lại
+            </button>
+            <button
+              className="btn btn-outline-success"
+              disabled={pagination.page >= totalPages - 1}
+              onClick={() => handlePageChange(pagination.page + 1)}
+            >
+              Xem thêm
+            </button>
           </div>
         </div>
       </article>

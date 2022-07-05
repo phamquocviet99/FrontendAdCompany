@@ -1,10 +1,45 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./Style/DetailsNews.css";
 import { motion } from "framer-motion";
 import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
 import { Button, Form, FormControl } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import NewsApi from "../api/NewsApi";
 
 function DetailsNews() {
+  const { id } = useParams();
+  const [news, setNews] = useState({});
+  const [listNews, setListNews] = useState([]);
+  useEffect(() => {
+    document.title = "TIN TỨC";
+    async function FetchNews() {
+      try {
+        const response = await NewsApi.getById(id);
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setNews(data.data);
+        }
+      } catch (error) {
+        alert("Tải tin tức thất bại");
+        console.log(error);
+      }
+    }
+    FetchNews();
+  }, [id]);
+  useEffect(() => {
+    const FetchListNews = async () => {
+      try {
+        const response = await NewsApi.getAll({ page: 0, limit: 4 });
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setListNews(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchListNews();
+  }, []);
   return (
     <div>
       <div className="banner-recruit-page">
@@ -27,28 +62,59 @@ function DetailsNews() {
       <article>
         <div className="container">
           <div className="title-news-details">
-            <h2> CÁCH CHỌN MAI CHƠI TẾT</h2>
-            <h5>L.A.D - 28/09/2020</h5>
+            <h2> {news.name}</h2>
+            <h5>L.A.D - {news?.createdAt}</h5>
             <h6></h6>
           </div>
           <div className="row">
-            <div className="col-md-8">
+            <div
+              data-aos="fade-right"
+              data-aos-duration="2000"
+              className="col-md-8"
+            >
               <img
                 className="img-new-details-thumb"
                 alt=""
-                src={require("../images/images/news-1563348634.jpg")}
+                src={news?.urlImage}
               ></img>
             </div>
-            <div className="col-md-4">
-              <BoxNewsRight />
-              <BoxNewsRight />
-              <BoxNewsRight />
-              <BoxNewsRight />
+            <div
+              data-aos="fade-left"
+              data-aos-duration="2000"
+              className="col-md-4"
+            >
+              {listNews?.map((n, index) => (
+                <BoxNewsRight key={index} news={n} />
+              ))}
             </div>
           </div>
           <div className="row">
-            <div className="col-md-8">
-              <p>asd</p>
+            <div
+              data-aos="fade-right"
+              data-aos-duration="2000"
+              className="col-md-8"
+            >
+              <div
+                style={{
+                  margin: "10px 0",
+                  height: "1.5px",
+                  width: "100%",
+                  backgroundColor: "#67676767",
+                }}
+              ></div>
+              <p>{news?.summary}</p>
+              <div
+                style={{
+                  margin: "10px 0",
+                  height: "1.5px",
+                  width: "100%",
+                  backgroundColor: "#67676767",
+                }}
+              ></div>
+              <p>
+                {" "}
+                <div dangerouslySetInnerHTML={{ __html: news?.content }} />
+              </p>
               <p>
                 <em>
                   Để biết thêm thông tin và được tư vấn, xin vui lòng liên hệ:
@@ -66,7 +132,11 @@ function DetailsNews() {
                 </span>
               </p>
             </div>
-            <div className="col-md-4">
+            <div
+              data-aos="fade-left"
+              data-aos-duration="2000"
+              className="col-md-4"
+            >
               <div className="title-right-news-dt">
                 <h2> Đăng ký nhận tin</h2>
                 <h5>Góc chia sẻ, hướng dẫn thi công</h5>

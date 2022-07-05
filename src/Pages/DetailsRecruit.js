@@ -1,8 +1,27 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import "./Style/DetailsRecruit.css";
 import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import RecruitApi from "../api/RecruitApi";
 
 function DetailsRecruit() {
+  const { id } = useParams();
+  const [recruit, setRecruit] = useState({});
+  useEffect(() => {
+    const FetchRecruit = async () => {
+      document.title="TUYỂN DỤNG"
+      try {
+        const response = await RecruitApi.getById(id);
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          setRecruit(data.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    FetchRecruit();
+  }, [id]);
   return (
     <div>
       <div className="banner-recruit-page">
@@ -27,9 +46,7 @@ function DetailsRecruit() {
           <div className="row">
             <div className="col-lg-12">
               <div className="title-detail-design">
-                <h2>
-                  KỸ SƯ THI CÔNG CẢNH QUAN (Lương 8.000.000đ - 10.000.000đ)
-                </h2>
+                <h2>{recruit?.name}</h2>
                 <h5>15/04/2021</h5>
                 <h6 />
               </div>
@@ -38,13 +55,7 @@ function DetailsRecruit() {
                   <strong>Phúc lợi</strong>
                 </p>
                 <p>
-                  <span>
-                    - Lương tháng 13, thưởng các ngày Lễ, Tết
-                    <br />
-                    - Được hưởng các chế độ bảo hiểm, nghỉ phép,.. theo quy định
-                    của Luật lao động
-                    <br />- Được tăng lương hàng năm và khen thưởng theo dự án
-                  </span>
+                  <div dangerouslySetInnerHTML={{ __html: recruit?.welfare }} />
                 </p>
                 <p>
                   <span>
@@ -52,14 +63,9 @@ function DetailsRecruit() {
                   </span>
                 </p>
                 <p>
-                  <span>
-                    - Quản lý, giám sát các công trình thi công cảnh quan
-                  </span>
-                  <br />
-                  <span>
-                    - Các công việc khác theo chỉ đạo của cấp trên (trao đổi
-                    thêm khi phỏng vấn)
-                  </span>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: recruit?.description }}
+                  />
                 </p>
                 <p>
                   <span>
@@ -67,17 +73,9 @@ function DetailsRecruit() {
                   </span>
                 </p>
                 <p>
-                  <span >
-                    - Nam, có 02-03 năm kinh nghiệm trong tổ chức, giám sát thi
-                    công công trình cảnh quan
-                    <br />
-                    - Đọc hiểu bản vẽ Autocad
-                    <br />
-                    - Nắm rõ các kỹ thuật trồng và chăm sóc cây xanh
-                    <br />
-                    - Có khả năng quản lý đội nhóm
-                    <br />- Sẵn sàng đi công tác xa
-                  </span>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: recruit?.requirements }}
+                  />
                 </p>
               </div>
             </div>

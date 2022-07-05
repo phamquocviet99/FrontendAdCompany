@@ -1,0 +1,13 @@
+.container-table{
+    margin: 20px;
+}
+th,td{
+    font-size: 16px;
+}
+.icon-action{
+    font-size: 15px;
+}
+.btn-action{
+   padding-top: 8px;
+   margin: 0 10px;
+}

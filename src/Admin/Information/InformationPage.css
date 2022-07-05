@@ -1,0 +1,44 @@
+.info-page-admin {
+  padding: 40px;
+}
+.title-page-admin {
+  font-size: 30px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 20px 0px;
+  text-align: center;
+}
+
+.label-input {
+  font-size: 16px;
+}
+.input-g {
+  height: 20px;
+}
+.form-group {
+  margin: 20px 0;
+}
+.form-group > label {
+  font-size: 17px;
+  font-weight: 300;
+}
+.form-group > input {
+  height: 35px;
+  font-size: 16px;
+}
+.form-group > textarea {
+    height: 35px;
+    font-size: 16px;
+  }
+.w-70 {
+  width: 70%;
+}
+.btn-admin {
+  font-size: 16px;
+  margin: 10px 20px;
+  padding: 7px 13px;
+}
+.group-btn{
+    display: flex;
+    justify-content: end;
+}

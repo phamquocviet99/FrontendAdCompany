@@ -13,8 +13,8 @@
 }
 .title-post > h2 {
   color: #353535;
-  font-size: 18px;
-  margin: 20px 0;
+  font-size: 16px;
+  margin: 10px 0;
   text-overflow: ellipsis;
   text-transform: uppercase;
 }
@@ -37,6 +37,7 @@
 
 .txt-news-full > p {
   font-size: 15px;
+  color: #757575;
 }
 .limit-text-about {
   width: 100%;

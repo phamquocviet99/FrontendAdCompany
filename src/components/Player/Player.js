@@ -2,17 +2,17 @@ import React from "react";
 import ReactPlayer from "react-player";
 import "./Player.css";
 
-function Player(props) {
+function Player({project}) {
   return (
     <div className="player-wrapper">
       <ReactPlayer
-        url="https://www.youtube.com/watch?v=-X4ikwUwxoE"
+        url={project?.urlVideo}
         className="react-player"
-        playing
         width="100%"
         height="100%"
-        controls={false}
+        controls={true}
       />
+      
     </div>
   );
 }

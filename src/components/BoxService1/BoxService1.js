@@ -2,7 +2,7 @@ import React from "react";
 import "./BoxService1.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
-function BoxService1(props) {
+function BoxService1({service}) {
   return (
     <div className="content-service-box">
       <div className="row">
@@ -15,7 +15,7 @@ function BoxService1(props) {
           <div className="img-service-1">
             <img
               alt=""
-              src={require("../../images/images/tkcanhquan-1.jpg")}
+              src={service?.image1 }
             ></img>
           </div>
         </div>
@@ -28,16 +28,15 @@ function BoxService1(props) {
           <div className="img-service-2">
             <img
               alt=""
-              src={require("../../images/images/tkcanhquan-2.jpg")}
+              src={service?.image2 }
             ></img>
             <div className="service-title">
-              <h2> thiết kế cảnh quan</h2>
+              <h2>{service?.name}</h2>
               <p>
-                L.A.D với phướng châm: - Tư vấn chi tiết - Chi phí hợp lý - Dự
-                toán chặt chẽ - Thiết kế thiết thực
+              {service?.summary}
               </p>
               <div className="text-center" style={{ marginTop: "15px" }}>
-                <button className="btn btn-outline-success">XEM THÊM</button>
+                <a href={service?.link} className="btn btn-outline-success">XEM THÊM</a>
               </div>
             </div>
           </div>

@@ -1,21 +1,23 @@
 import React from "react";
 import "./BoxProduct.css";
 
-function BoxProduct(props) {
-    const url="/san-pham/chi-tiet"
+function BoxProduct({ product }) {
+ 
   return (
     <div className="box-product">
-      <a href={url}>
-        <img alt="" src={require("../../images/images/caynoithat-1.jpg")}></img>
+      <a href={`/san-pham/chi-tiet/${product._id}`}>
+        <img alt="" src={product?.avatar?.url}></img>
       </a>
       <div className="txt-box-product text-center">
-        <a href={url}>
-          <h3>Cây Ngọc bích</h3>
+        <a  href={`/san-pham/chi-tiet/${product._id}`}>
+          <h3>{product?.commonName}</h3>
         </a>
         <h5 />
         <h4>
-          <a href={url}>
-            <span>Giá: 50.000</span>
+          <a href={`/san-pham/chi-tiet/${product._id}`}>
+            <span>
+              Giá: <span> {product?.price}</span>
+            </span>
           </a>
         </h4>
       </div>

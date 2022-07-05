@@ -1,0 +1,26 @@
+.modal-test {
+  height: 500px;
+  width: 500px;
+  background-color: rgb(162, 162, 162);
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow-x: hidden;
+}
+.display-none {
+  display: none;
+}
+.group-add-edit {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: rgb(135, 135, 135) solid 2px;
+  border-radius: 7px;
+  margin: 30px;
+}
+.group-add-edit > input {
+  width: 50%;
+  height: 30px;
+  font-size: 16px;
+}

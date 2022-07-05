@@ -19,6 +19,7 @@ function Login() {
   useEffect(() => {
     if (isLogin) {
       navigate("/admin");
+      window.location.reload();
     }
   }, [isLogin, navigate]);
   async function Login(user) {
@@ -33,6 +34,8 @@ function Login() {
       alert("Đăng nhập không thành công");
     }
   }
+  // Get the input field
+
   async function handleLogin() {
     const user = {
       username: username,
@@ -40,6 +43,10 @@ function Login() {
     };
     Login(user);
   }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleLogin();
+  };
 
   //handle inputtext
   return (
@@ -47,32 +54,36 @@ function Login() {
       <div className="background-img-login">
         <div className="container-login">
           <h2 style={{ fontSize: "25px" }}>ĐĂNG NHẬP</h2>
-          <div className="form-group">
-            <label style={{ fontSize: "16px" }}>Tên đăng nhập</label>
-            <input
-              onChange={handleChangeUsername}
-              type="email"
-              className="form-control input-login"
-              placeholder="username"
-            />
-          </div>
-          <div className="form-group">
-            <label style={{ fontSize: "16px" }}>Mật khẩu</label>
-            <input
-              onChange={handleChangePassword}
-              type="password"
-              className="form-control input-login "
-              placeholder="password"
-            />
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label style={{ fontSize: "16px" }}>Tên đăng nhập</label>
+              <input
+                onChange={handleChangeUsername}
+                type="text"
+                className="form-control input-login"
+                placeholder="username"
+              />
+            </div>
+            <div className="form-group">
+              <label style={{ fontSize: "16px" }}>Mật khẩu</label>
+              <input
+                onChange={handleChangePassword}
+                type="password"
+                className="form-control input-login "
+                placeholder="password"
+              />
+            </div>
 
-          <button
-            style={{ fontSize: "16px" }}
-            className="btn btn-primary btn-login"
-            onClick={handleLogin}
-          >
-            Đăng nhập
-          </button>
+            <button
+              type="submit"
+              id="login"
+              style={{ fontSize: "16px" }}
+              className="btn btn-primary btn-login"
+              
+            >
+              Đăng nhập
+            </button>
+          </form>
         </div>
       </div>
     </div>

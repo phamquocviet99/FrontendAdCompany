@@ -5,12 +5,13 @@
   align-items: center;
   padding: 2rem 3rem;
   position: relative;
+  justify-content: space-between;
 }
 .side-bar {
   position: absolute;
   background-color: #494949;
   color: white;
-
+z-index: 1;
   left: 0;
   transform: translateX(-100%);
   transition: all 0.4s;
@@ -25,6 +26,7 @@
   gap: 1rem;
   font-weight: 300;
 }
+
 .side-bar a:hover {
   background-color: #fff;
   color: #000;
@@ -34,18 +36,20 @@
   transform: translateX(0%);
 }
 .backdrop {
-  
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 150vh;
   background-color: rgba(0, 0, 0, 0.519);
   display: none;
 }
 .backdrop--open {
   display: block;
+  position:absolute;
+  z-index: 0;
 }
 .title-admin {
   font-size: 25px;
-  margin-left: 20px;
+  margin-left: 30px;
+
 }

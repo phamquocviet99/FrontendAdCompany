@@ -53,49 +53,49 @@ function Footer() {
                 <ul className="custome-ul-right">
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/du-an">
                       Thiết kế cảnh quan
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/du-an">
                       Thiết kế kiến trúc-nội thất
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/du-an">
                       Thi công cảnh quan
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/san-pham">
                       Cung cấp cây xanh công trình
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/san-pham">
                       Chăm sóc bảo dưỡng cảnh quan
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome"href="/san-pham">
                       Cung cấp & cho thuê cây nội thất
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/san-pham">
                       Cung cấp vật tư cảnh quan
                     </a>
                   </li>
                   <li className="txt-li">
                     <i className=" icon-ft fa fa-circle " />
-                    <a className="a-custome" href="/">
+                    <a className="a-custome" href="/san-pham">
                       Cung cấp cá Koi
                     </a>
                   </li>

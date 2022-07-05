@@ -338,6 +338,18 @@
   width: 225px;
   font-size: 14px;
 }
+.txt-news-hom {
+  color: #6f6f6f;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-height: 18px;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  max-height: 100px;
+  text-align: justify;
+}
 
 @media screen and (max-width: 760px) {
   .box-about {

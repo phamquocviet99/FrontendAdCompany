@@ -41,8 +41,7 @@
   margin-bottom: 10px;
 }
 
-element.style {
-}
+
 .txt-box-news > p {
   color: #6f6f6f;
   font-size: 15px;
@@ -54,4 +53,7 @@ element.style {
   -webkit-box-orient: vertical;
   max-height: 53px;
   text-align: justify;
+}
+.text-box-news-content > p>span>span>span {
+font-weight: 100;
 }

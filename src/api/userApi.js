@@ -17,6 +17,14 @@ const userApi = {
     const url = `/user/login`;
     return axiosClient.post(url, user);
   },
+  change: (user) => {
+    const url = `/user/change`;
+    return axiosClient.put(url, user);
+  },
+  update: (id,user) => {
+    const url = `/user/${id}`;
+    return axiosClient.put(url, user);
+  },
 };
 
 export default userApi;
