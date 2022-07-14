@@ -4,7 +4,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 function BoxService1({service}) {
   return (
-    <div className="content-service-box">
+    <div className="content-service-box" style={{margin:"10px 0"}}>
       <div className="row">
         <div
           className="col-md-6"

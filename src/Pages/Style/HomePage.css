@@ -396,4 +396,21 @@
     width: 100%;
     font-size: 14px;
   }
+  .font-title-home {
+    font-size: 23px;
+    color: #124a2f;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .title-capacity {
+    text-transform: uppercase;
+    font-weight: normal;
+    line-height: 1.5;
+    font-size: 22px;
+  }
+  .font-title-share {
+  font-size: 22px;
+  font-weight: bold;
+}
+  
 }

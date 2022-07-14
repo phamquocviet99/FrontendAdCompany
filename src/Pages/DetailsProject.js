@@ -69,7 +69,7 @@ function DetailsProject() {
                   }}
                 >
                  <div
-                    className="auto-scroll"
+                    
                     dangerouslySetInnerHTML={{ __html: project?.content }}
                   />
                 </p>

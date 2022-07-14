@@ -51,6 +51,14 @@ function ProjectCreatePageAdmin() {
       console.log(error);
     }
   }
+
+    const config = {
+      
+
+      useAspectRatio: ['img'], // save only for images (default value)
+  
+    };
+  
   // handle change value input
   function handleChangeName(e) {
     setProject({ ...project, name: e.target.value });
@@ -254,6 +262,7 @@ function ProjectCreatePageAdmin() {
               <label>Nội dung</label>
 
               <JoditEditor
+              config={config}
                 onChange={(newContent) => {
                   setProject({ ...project, content: newContent });
                 }}
