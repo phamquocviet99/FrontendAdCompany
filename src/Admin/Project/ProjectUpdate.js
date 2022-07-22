@@ -12,9 +12,10 @@ import {
 import { useParams } from "react-router-dom";
 import ProjectApi from "../../api/ProjectApi";
 import { useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
+
 
 function ProjectUpdatePageAdmin() {
+  const [loading, setLoading] = useState(false)
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState({
@@ -23,6 +24,7 @@ function ProjectUpdatePageAdmin() {
     location: "",
     content: "",
     idCategory: "",
+    area:"",
     image: [{ name: "", url: "" }],
     urlVideo: "",
   });
@@ -81,6 +83,9 @@ function ProjectUpdatePageAdmin() {
   function handleChangeCategory(e) {
     setProject({ ...project, idCategory: e.target.value });
   }
+  function handleChangeArea(e) {
+    setProject({ ...project, area: e.target.value });
+  }
   function handleChangeImage(e) {
     if (e.target.files.length > 0) {
       let check = false;
@@ -106,11 +111,25 @@ function ProjectUpdatePageAdmin() {
     setProject({ ...project, urlVideo: e.target.value });
   }
   const uploadImage = (files) => {
+    setLoading(true);
     try {
       if (!files) return;
       const urls = project.image;
       for (const file of files) {
-        const storageRef = ref(storage, `images/project/${file.name}`);
+        var today = new Date();
+
+        const name =
+          file.name +
+          today.getDay()+
+          ":" +
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds() +
+          ":" +
+          today.getMilliseconds();
+        const storageRef = ref(storage, `images/project/${name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on(
           "state_changed",
@@ -120,8 +139,9 @@ function ProjectUpdatePageAdmin() {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              urls.push({ name: file.name, url: downloadURL });
+              urls.push({ name: name, url: downloadURL });
               setProject({ ...project, image: urls });
+              setLoading(false);
             });
           }
         );
@@ -193,6 +213,10 @@ function ProjectUpdatePageAdmin() {
               />
             </div>
             <div className=" form-group">
+              <label>Diện tích</label>
+              <input value={project?.area} onChange={handleChangeArea} className="form-control" />
+            </div>
+            <div className=" form-group">
               <label>Thêm hình ảnh</label>
               <div className="input-group">
                 <input
@@ -204,6 +228,13 @@ function ProjectUpdatePageAdmin() {
                 <label className="input-group-text">Upload</label>
               </div>
             </div>
+            {loading ? (
+              <div>
+                <h3>Đang tải hình ảnh, vui lòng đợi...</h3>
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
 
           <div className="col-md-6">
@@ -274,6 +305,9 @@ function ProjectUpdatePageAdmin() {
                 onChange={(newContent) => {
                   setProject({ ...project, content: newContent });
                 }}
+                onBlur={(newContent) => {
+                  setProject({ ...project, content: newContent });
+                }}
                 className="form-control"
                 tabIndex={1}
               />
@@ -287,6 +321,7 @@ function ProjectUpdatePageAdmin() {
                 Cập nhật bài viết
               </button>
               <button
+               disabled={loading}
                 onClick={cancelProject}
                 type="submit"
                 className="btn-admin btn btn-primary"

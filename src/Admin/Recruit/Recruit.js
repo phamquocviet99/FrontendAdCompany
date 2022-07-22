@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import RecruitApi from "../../api/RecruitApi";
+import "../News/News.css"
 
 function RecruitPageAdmin() {
   const [listRecruit, setListRecruit] = useState([]);
@@ -46,6 +47,7 @@ function RecruitPageAdmin() {
       <h2 className="title-page-admin">Danh sách các mục tuyển dụng</h2>
 
       <div>
+      <div className="auto-scroll-table">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -99,6 +101,7 @@ function RecruitPageAdmin() {
             </tbody>
           ))}
         </Table>
+        </div>
         <div className="group-btn">
           <a
             href="/admin/tuyen-dung/tao"

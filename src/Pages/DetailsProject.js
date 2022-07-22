@@ -5,13 +5,14 @@ import { Carousel } from "react-responsive-carousel";
 import Player from "../components/Player/Player";
 import { useParams } from "react-router-dom";
 import ProjectApi from "../api/ProjectApi";
+import OnTop from "../components/BacktoTop/OnTop";
 function DetailsProject() {
   const [active, setActive] = useState("first");
   const { id } = useParams();
   const [project, setProject] = useState({});
   useEffect(() => {
     const FetchProject = async () => {
-      document.title="DỰ ÁN"
+      document.title = "DỰ ÁN";
       try {
         const response = await ProjectApi.getById(id);
         const data = JSON.parse(JSON.stringify(response));
@@ -53,11 +54,13 @@ function DetailsProject() {
               </div>
               <div className="txt-detail-design">
                 <p>
-                  <strong>Chủ đầu tư: </strong>
+                  <strong>Chủ đầu tư : </strong>
                   {project?.investor}
                   <br />
-                  <strong>Địa điểm:&nbsp;</strong>
+                  <strong>Địa điểm :&nbsp;</strong>
                   {project?.location}
+                  <br /><strong>Diện tích :&nbsp;</strong>
+                  {project?.area}
                   <br />
                   <strong>Dịch vụ:</strong>&nbsp;{project?.nameCategory}
                 </p>
@@ -68,10 +71,7 @@ function DetailsProject() {
                     textAlign: "justify",
                   }}
                 >
-                 <div
-                    
-                    dangerouslySetInnerHTML={{ __html: project?.content }}
-                  />
+                  <div dangerouslySetInnerHTML={{ __html: project?.content }} />
                 </p>
               </div>
             </div>
@@ -134,6 +134,7 @@ function DetailsProject() {
           </div>
         </div>
       </article>
+      <OnTop />
     </div>
   );
 }

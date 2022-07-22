@@ -33,7 +33,7 @@ function DivDesign1({ project }) {
               <div className="info-project">
                 <p>{project?.name}</p>
                 <p>
-                  Dịch vụ :<span> {project?.nameCategory}</span>
+                  Địa điểm :<span> {project?.location}</span>
                 </p>
               </div>
             </animated.div>

@@ -19,11 +19,13 @@ function ProjectCreatePageAdmin() {
     investor: "",
     location: "",
     content: "",
+    area: "",
     idCategory: "",
     image: [],
     urlVideo: "",
   });
   const [listCategory, setListCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const FetchListCategory = async () => {
       try {
@@ -52,13 +54,8 @@ function ProjectCreatePageAdmin() {
     }
   }
 
-    const config = {
-      
+  const config = { readonly: false }
 
-      useAspectRatio: ['img'], // save only for images (default value)
-  
-    };
-  
   // handle change value input
   function handleChangeName(e) {
     setProject({ ...project, name: e.target.value });
@@ -71,6 +68,9 @@ function ProjectCreatePageAdmin() {
   }
   function handleChangeCategory(e) {
     setProject({ ...project, idCategory: e.target.value });
+  }
+  function handleChangeArea(e) {
+    setProject({ ...project, area: e.target.value });
   }
   function handleChangeImage(e) {
     if (e.target.files.length > 0) {
@@ -97,11 +97,25 @@ function ProjectCreatePageAdmin() {
     setProject({ ...project, urlVideo: e.target.value });
   }
   const uploadImage = (files) => {
+    setLoading(true);
     try {
       if (!files) return;
       const urls = project.image;
       for (const file of files) {
-        const storageRef = ref(storage, `images/project/${file.name}`);
+        var today = new Date();
+
+        const name =
+          file.name +
+          today.getDay()+
+          ":" +
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds() +
+          ":" +
+          today.getMilliseconds();
+        const storageRef = ref(storage, `images/project/${name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on(
           "state_changed",
@@ -111,8 +125,9 @@ function ProjectCreatePageAdmin() {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              urls.push({ name: file.name, url: downloadURL });
+              urls.push({ name: name, url: downloadURL });
               setProject({ ...project, image: urls });
+              setLoading(false);
             });
           }
         );
@@ -124,6 +139,7 @@ function ProjectCreatePageAdmin() {
     }
   };
   const deleteFromFirebaseSingle = (file) => {
+    setLoading(true);
     if (!file) return;
     const desertRef = ref(storage, `images/project/${file.name}`);
     deleteObject(desertRef)
@@ -135,6 +151,7 @@ function ProjectCreatePageAdmin() {
           }
         }
         setProject({ ...project, image: listImg });
+        setLoading(false);
       })
       .catch((error) => {
         console.log("not");
@@ -166,7 +183,6 @@ function ProjectCreatePageAdmin() {
       alert("Mời bạn nhập đủ trường thông tin !");
     } else {
       createProject();
-      
     }
   }
   function cancelProject() {
@@ -188,9 +204,14 @@ function ProjectCreatePageAdmin() {
                 className="form-control"
               />
             </div>
+
             <div className=" form-group">
               <label>Chủ đầu tư</label>
               <input onChange={handleChangeInvestor} className="form-control" />
+            </div>
+            <div className=" form-group">
+              <label>Diện tích</label>
+              <input onChange={handleChangeArea} className="form-control" />
             </div>
             <div className=" form-group">
               <label>Hình ảnh</label>
@@ -205,6 +226,13 @@ function ProjectCreatePageAdmin() {
                 <label className="input-group-text">Upload</label>
               </div>
             </div>
+            {loading ? (
+              <div>
+                <h3>Đang tải hình ảnh, vui lòng đợi...</h3>
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
           <div className="col-md-6">
             <div className="form-group">
@@ -262,8 +290,11 @@ function ProjectCreatePageAdmin() {
               <label>Nội dung</label>
 
               <JoditEditor
-              config={config}
+               
                 onChange={(newContent) => {
+                  setProject({ ...project, content: newContent });
+                }}
+                onBlur={(newContent) => {
                   setProject({ ...project, content: newContent });
                 }}
                 className="form-control"
@@ -272,6 +303,7 @@ function ProjectCreatePageAdmin() {
             </div>
             <div className="group-btn">
               <button
+                disabled={loading}
                 onClick={submitProject}
                 type="submit"
                 className="btn-admin btn btn-primary"

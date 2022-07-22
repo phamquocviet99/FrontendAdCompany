@@ -47,6 +47,7 @@ import ProductCreate from "./Admin/Product/ProductCreate";
 import ProductDetailAdmin from "./Admin/Product/ProductDetail";
 import ProductUpdate from "./Admin/Product/ProductUpdate";
 import Partner from "./Admin/Partner/Partner";
+import MessameAdmin from "./Admin/Message/Message";
 
 function ClientLayout() {
   return (
@@ -142,6 +143,8 @@ function App() {
             element={<ProductUpdate />}
           />
           <Route path="/admin/doi-tac" element={<Partner />} />
+          <Route path="/admin/thu-khach-hang" element={<MessameAdmin />} />
+         
         </Route>
       </Routes>
     </Router>

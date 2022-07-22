@@ -13,12 +13,12 @@ import NewsApi from "../../api/NewsApi";
 function NewsUpdatePage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [news, setNews] = useState({
     name: "",
     urlImage: "",
     content: "",
     nameImage: "",
-    summary:""
   });
   useEffect(() => {
     async function FetchNews() {
@@ -62,6 +62,7 @@ function NewsUpdatePage() {
 
   const uploadImage = (file) => {
     try {
+      setLoading(true)
       if (!file) return;
       const storageRef = ref(storage, `images/news/${file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -74,6 +75,7 @@ function NewsUpdatePage() {
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setNews({ ...news, nameImage: file.name, urlImage: downloadURL });
+            setLoading(false)
           });
         }
       );
@@ -83,11 +85,14 @@ function NewsUpdatePage() {
     }
   };
   const deleteFromFirebaseSingle = (name) => {
+   
     if (!name) return;
+    setLoading(true)
     const desertRef = ref(storage, `images/news/${name}`);
     deleteObject(desertRef)
       .then(() => {
         setNews({ ...news, urlImage: "", nameImage: "" });
+        setLoading(false)
       })
       .catch((error) => {
         console.log("not");
@@ -100,7 +105,6 @@ function NewsUpdatePage() {
       news.name === "" ||
       news.content === "" ||
       news.nameImage === "" ||
-      news.summary === "" ||
       news.urlImage === ""
     ) {
       alert("Mời bạn nhập đủ trường thông tin !");
@@ -128,18 +132,7 @@ function NewsUpdatePage() {
             className="form-control"
           />
         </div>
-        <div className="form-group ">
-          <label>
-            Giới thiệu chung (hiển thị nội dung tóm tắt trên các thẻ bài viết)
-          </label>
-          <textarea
-            onChange={(e) => {
-              setNews({ ...news, summary: e.target.value });
-            }}
-           style={{height:"150px"}}
-            className="form-control"
-          />
-        </div>
+
         <div className="form-group">
           <label>Ảnh đại diện tin tức</label>
 
@@ -191,12 +184,16 @@ function NewsUpdatePage() {
                 onChange={(newContent) => {
                   setNews({ ...news, content: newContent });
                 }}
+                onBlur={(newContent) => {
+                  setNews({ ...news, content: newContent });
+                }}
                 className="form-control"
                 tabIndex={1}
               />
             </div>
             <div className="group-btn">
               <button
+              disabled={loading}
                 onClick={submitProject}
                 type="submit"
                 className="btn-admin btn btn-primary"

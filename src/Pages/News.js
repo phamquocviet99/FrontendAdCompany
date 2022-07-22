@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import BoxNew from "../components/BoxNews/BoxNew";
 import NewsApi from "../api/NewsApi";
 import { list } from "firebase/storage";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function News() {
   const [listNews, setListNews] = useState([]);
@@ -84,6 +85,7 @@ function News() {
           </button>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

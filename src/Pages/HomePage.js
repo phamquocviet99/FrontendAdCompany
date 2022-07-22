@@ -10,6 +10,9 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import NewsApi from "../api/NewsApi";
 import ProjectApi from "../api/ProjectApi";
+import OnTop from "../components/BacktoTop/OnTop";
+import MessageApi from "../api/MessageApi";
+import { async } from "@firebase/util";
 
 function ChangeDate(text) {
   if (!text) return;
@@ -20,9 +23,15 @@ function HomePage() {
   const contact = useRef(null);
   const [listNews, setListNews] = useState([]);
   const [listProject, setListProject] = useState([]);
+  const [Emessage, setMessage] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
 
   useEffect(() => {
-    document.title ="TRANG CHỦ"
+    document.title = "TRANG CHỦ";
     const executeScroll = () => contact.current.scrollIntoView();
     if (params.params !== undefined) {
       executeScroll();
@@ -63,6 +72,40 @@ function HomePage() {
     '<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7840.48626187924!2d106.69834301505135!3d10.715721187147192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zRDIwLCBLREMgUGjGsOG7m2MgTmd1eeG7hW4gSMawbmcsIE5ndXnhu4VuIEjhu691IFRo4buNLCDhuqRwIDUsIFjDoyBQaMaw4bubYyBLaeG7g24sIEh1eeG7h24gTmjDoCBCw6gsIFRwLkjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2s!4v1654932574737!5m2!1svi!2s" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 
   // const executeScroll = () => contact.current.scrollIntoView();
+
+  async function handleSentMessage() {
+    if (
+      Emessage.email === "" ||
+      Emessage.phone === "" ||
+      Emessage.name === "" ||
+      Emessage.message === ""
+    ) {
+      alert("Mời bạn nhập đủ trường thông tin");
+    } else {
+      try {
+        const response = await MessageApi.create(Emessage);
+        const data = JSON.parse(JSON.stringify(response));
+        if (!data.error) {
+          alert("Gửi thư thành công");
+        }
+      } catch (error) {
+        alert("Gửi thưc thất bại");
+        console.log(error);
+      }
+    }
+  }
+  function handleChangeName(e) {
+    setMessage({ ...Emessage, name: e.target.value });
+  }
+  function handleChangePhone(e) {
+    setMessage({ ...Emessage, phone: e.target.value });
+  }
+  function handleChangeEmail(e) {
+    setMessage({ ...Emessage, email: e.target.value });
+  }
+  function handleChangeMessage(e) {
+    setMessage({ ...Emessage, message: e.target.value });
+  }
   return (
     <div className="content-home">
       <Carousel fade>
@@ -187,7 +230,9 @@ function HomePage() {
               </div>
               <div className="col-lg-12 ">
                 <div className="text-center" style={{ marginTop: "15px" }}>
-                  <a href="/dich-vu" className="btn btn-outline-success">XEM THÊM</a>
+                  <a href="/dich-vu" className="btn btn-outline-success">
+                    XEM THÊM
+                  </a>
                 </div>
               </div>
             </div>
@@ -214,75 +259,87 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="home-news">
-        <div className="container">
-          <div className="home-title">
-            <p className="font-title-home">tin tức & sự kiện</p>
-          </div>
-          <div className="row">
-            <div
-              className="col-md-7 col-xs-12"
-              data-aos="fade-right"
-              data-aos-duration="2000"
-              style={{ marginBottom: "20px" }}
-            >
-              <div className="box-news">
-                <div
-                  style={{
-                    backgroundImage: `url(${listNews[0]?.urlImage})`,
-                    backgroundSize: "cover",
-                    height: "200px",
-                    width: "100%",
-                  }}
-                  
-                ></div>
-                <div className="ed-comments-cal">
-                  <div className="ed-comment">
-                    <i className="fa fa-eye icon-news-home"></i>
-                    <br /> {listNews[0]?.view}
-                  </div>
-                  <div className="ed-calendar">
-                    <i className="fa fa-calendar icon-news-home"></i>
-                    <br />
-                    {ChangeDate(listNews[0]?.createdAt)}
-                  </div>
-                </div>
-                <div className="txt-news">
-                  <h2 className="title-inline">{listNews[0]?.name}</h2>
+      {listNews?.length >= 4 ? (
+        <div className="home-news">
+          <div className="container">
+            <div className="home-title">
+              <p className="font-title-home">tin tức & sự kiện</p>
+            </div>
+            <div className="row">
+              <div
+                className="col-md-7 col-xs-12"
+                data-aos="fade-right"
+                data-aos-duration="2000"
+                style={{ marginBottom: "20px" }}
+              >
+                <div className="box-news">
                   <div
                     style={{
-                      width: "85%",
-                      height: "1.5px",
-                      backgroundColor: "#ab987a",
-                      margin: "10px 0",
+                      backgroundImage: `url(${listNews[0]?.urlImage})`,
+                      backgroundSize: "cover",
+                      height: "200px",
+                      width: "100%",
                     }}
                   ></div>
-                  <p className="content-box-about" style={{ marginTop: "0px" }}>
-                   <a className="txt-news-hom" href={`/tin-tuc/chi-tiet/${listNews[0]?._id}`}>{listNews[0]?.summary}</a>
-                  </p>
+                  <div className="ed-comments-cal">
+                    <div className="ed-comment">
+                      <i className="fa fa-eye icon-news-home"></i>
+                      <br /> {listNews[0]?.view}
+                    </div>
+                    <div className="ed-calendar">
+                      <i className="fa fa-calendar icon-news-home"></i>
+                      <br />
+                      {ChangeDate(listNews[0]?.createdAt)}
+                    </div>
+                  </div>
+                  <div className="txt-news">
+                    <h2 className="title-inline">{listNews[0]?.name}</h2>
+                    <div
+                      style={{
+                        width: "85%",
+                        height: "1.5px",
+                        backgroundColor: "#ab987a",
+                        margin: "10px 0",
+                      }}
+                    ></div>
+                    <p
+                      className="content-box-about"
+                      style={{ marginTop: "0px" }}
+                    >
+                      <a
+                        className="txt-news-hom"
+                        href={`/tin-tuc/chi-tiet/${listNews[0]?._id}`}
+                      >
+                        {listNews[0]?.summary}
+                      </a>
+                    </p>
+                  </div>
                 </div>
+              </div>
+              <div
+                className="col-md-5 col-xs-12"
+                data-aos="fade-left"
+                data-aos-duration="2000"
+              >
+                {listNews?.map((n, index) =>
+                  index !== 0 ? <BoxNewsRight news={n} /> : <></>
+                )}
               </div>
             </div>
             <div
-              className="col-md-5 col-xs-12"
-              data-aos="fade-left"
-              data-aos-duration="2000"
+              className="text-center"
+              style={{ marginTop: "20px", marginBottom: "30px" }}
             >
-              {listNews?.map((n, index) =>
-                index !== 0 ? <BoxNewsRight news={n} /> : <></>
-              )}
+              <a href="/tin-tuc" className="btn btn-outline-success">
+                XEM THÊM
+              </a>
             </div>
           </div>
-          <div
-            className="text-center"
-            style={{ marginTop: "20px", marginBottom: "30px" }}
-          >
-            <a href="/tin-tuc"  className="btn btn-outline-success">
-              XEM THÊM
-            </a>
-          </div>
         </div>
-      </div>
+      ) : (
+        <div />
+      )}
+
       <article
         className="home-capacity"
         data-aos="fade-up"
@@ -353,7 +410,7 @@ function HomePage() {
                 <div className="col-md-3">
                   <img
                     alt=""
-                    src={require("../images/images/customer.jpg")}
+                    src={require("../images/images/avatr.jpg")}
                     className="img-customer"
                   ></img>
                 </div>
@@ -363,39 +420,12 @@ function HomePage() {
                       <i class="fa fa-quote-left icon-customer"></i>{" "}
                     </p>
                     <p className="content-review">
-                      L.A.D là một công ty cảnh quan rất tốt. Họ có nhiều dịch
-                      vụ tốt. Chúng tôi yêu họ bởi vì tất cả các nhân viên đang
-                      làm việc chăm chỉ, trung thực và đáng tin cậy. Họ luôn
-                      luôn đến đúng giờ, và giá thì...tốt quá!
+                      L.A.D là một công ty cảnh quan làm việc đầy nhiệt huyết,
+                      tận tâm chăm sóc khách hàng, đưa ra những giải pháp tối
+                      ưu.
                     </p>
-                    <h3 className="name-customer">Mai harimu</h3>
-                    <p className="job-customer"> Thiết kế thời trang</p>
-                  </div>
-                </div>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item interval={3000}>
-              <div className="row">
-                <div className="col-md-3">
-                  <img
-                    alt=""
-                    src={require("../images/images/customer.jpg")}
-                    className="img-customer"
-                  ></img>
-                </div>
-                <div className="col-md-9">
-                  <div className="info-customer">
-                    <p>
-                      <i class="fa fa-quote-left icon-customer"></i>{" "}
-                    </p>
-                    <p className="content-review">
-                      L.A.D là một công ty cảnh quan rất tốt. Họ có nhiều dịch
-                      vụ tốt. Chúng tôi yêu họ bởi vì tất cả các nhân viên đang
-                      làm việc chăm chỉ, trung thực và đáng tin cậy. Họ luôn
-                      luôn đến đúng giờ, và giá thì...tốt quá!
-                    </p>
-                    <h3 className="name-customer">Mai harimu</h3>
-                    <p className="job-customer"> Thiết kế thời trang</p>
+                    <h3 className="name-customer">Quốc Việt Phạm</h3>
+                    <p className="job-customer">Công nghệ thông tin</p>
                   </div>
                 </div>
               </div>
@@ -444,83 +474,77 @@ function HomePage() {
           </div>
         </div>
       </article>
-      <article
-        className="home-project "
-        data-aos="fade-up"
-        data-aos-duration="2000"
-      >
-        <div className="container">
-          <div className="home-title">
-            <p className="font-title-home">dự án</p>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="ed-product">
-              <DivDesign1
-              project={listProject[0]}
-               
-              />
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="ed-product">
-              <DivDesign2
-              
-              project={listProject[1]}
-              />
-            </div>
-            <div class="ed-product">
-              <DivDesign2
-               project={listProject[2]}
-              />
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="ed-product">
-              <DivDesign1
-                project={listProject[3]}
-              />
-            </div>
-          </div>
-          <div class="col-md-3 col-sm-6">
-            <div class="ed-product">
-              <DivDesign2
-              project={listProject[4]}
-              />
-            </div>
-            <div class="ed-product">
-              <DivDesign2
-             project={listProject[5]}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          className="text-center"
-          style={{
-            marginTop: "15px",
-          }}
+      {listProject?.length >= 6 ? (
+        <article
+          className="home-project "
+          data-aos="fade-up"
+          data-aos-duration="2000"
         >
-          <a href="/du-an" ref={contact} className="btn btn-outline-success">
-            XEM THÊM
-          </a>
-        </div>
-      </article>
-      <article className="home-contact">
+          <div className="container">
+            <div className="home-title">
+              <p className="font-title-home">dự án</p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="ed-product">
+                <DivDesign1 project={listProject[0]} />
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="ed-product">
+                <DivDesign2 project={listProject[1]} />
+              </div>
+              <div class="ed-product">
+                <DivDesign2 project={listProject[2]} />
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="ed-product">
+                <DivDesign1 project={listProject[3]} />
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="ed-product">
+                <DivDesign2 project={listProject[4]} />
+              </div>
+              <div class="ed-product">
+                <DivDesign2 project={listProject[5]} />
+              </div>
+            </div>
+          </div>
+          <div
+            className="text-center"
+            style={{
+              marginTop: "15px",
+            }}
+          >
+            <a href="/du-an"  className="btn btn-outline-success">
+              XEM THÊM
+            </a>
+          </div>
+        </article>
+      ) : (
+        <div />
+      )}
+
+      <article ref={contact} className="home-contact">
         <div className="container">
           <div className="row">
             <div className="col-md-6 setting-contact">
               <div class="col-sm-6">
                 <Form.Control
+                  onChange={handleChangeName}
                   className="txt-input-contact"
                   type="name"
                   placeholder="Tên"
                 />
                 <Form.Control
+                  onChange={handleChangePhone}
                   className="txt-input-contact"
                   type="phone"
                   placeholder="Số điện thoại"
                 />
                 <Form.Control
+                  onChange={handleChangeEmail}
                   className="txt-input-contact"
                   type="email"
                   placeholder="Email"
@@ -528,6 +552,7 @@ function HomePage() {
               </div>
               <div class="col-sm-6">
                 <Form.Control
+                  onChange={handleChangeMessage}
                   className="aera-txt-home"
                   style={{ height: "160px" }}
                   as="textarea"
@@ -541,6 +566,7 @@ function HomePage() {
                   }}
                 >
                   <Button
+                    onClick={handleSentMessage}
                     className="btn-address-customer"
                     variant="primary"
                     type="submit"
@@ -556,6 +582,7 @@ function HomePage() {
           </div>
         </div>
       </article>
+      <OnTop />
     </div>
   );
 }

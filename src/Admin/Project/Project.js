@@ -4,6 +4,7 @@ import CategoryProjectApi from "../../api/CategoryProjectApi";
 import ProjectApi from "../../api/ProjectApi";
 import "./Project.css";
 import { storage } from "../../api/FirebaseConfig";
+import "../News/News.css"
 import {
   ref,
   getDownloadURL,
@@ -35,6 +36,7 @@ function ProjectPageAdmin() {
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
           setListProject(data.data);
+          console.log(data.data)
         }
       } catch (error) {
         console.log(error);
@@ -122,14 +124,16 @@ function ProjectPageAdmin() {
           </select>
         </div>
       </div>
-      <div>
-        <Table striped bordered hover>
+      <div >
+        <div className="auto-scroll-table">
+        <Table striped bordered hover >
           <thead>
             <tr>
               <th style={{ width: "130px" }}>STT</th>
               <th>Tên dự án</th>
               <th>Chủ đầu tư</th>
               <th>Địa điểm</th>
+              <th>Diện tích</th>
               <th>Dịch vụ</th>
               <th>Số lượng hình ảnh</th>
               <th>Đường dẫn video</th>
@@ -143,6 +147,7 @@ function ProjectPageAdmin() {
                 <td>{c.name}</td>
                 <td>{c.investor}</td>
                 <td>{c.location}</td>
+                <td>{c.area}</td>
                 <td>{c.nameCategory}</td>
                 <td>{c.image.length}</td>
                 <td>{c.urlVideo}</td>
@@ -170,6 +175,7 @@ function ProjectPageAdmin() {
             ))}
           </tbody>
         </Table>
+        </div>
         <div className="group-btn">
           <a
             href="/admin/du-an/tao"
@@ -179,6 +185,7 @@ function ProjectPageAdmin() {
             Thêm bài viết
           </a>
         </div>
+        
       </div>
     </div>
   );

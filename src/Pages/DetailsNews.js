@@ -1,10 +1,12 @@
 import { React, useState, useEffect } from "react";
 import "./Style/DetailsNews.css";
 import { motion } from "framer-motion";
-import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
+
 import { Button, Form, FormControl } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import NewsApi from "../api/NewsApi";
+import OnTop from "../components/BacktoTop/OnTop";
+import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
 
 function DetailsNews() {
   const { id } = useParams();
@@ -94,28 +96,13 @@ function DetailsNews() {
               data-aos-duration="2000"
               className="col-md-8"
             >
-              <div
-                style={{
-                  margin: "10px 0",
-                  height: "1.5px",
-                  width: "100%",
-                  backgroundColor: "#67676767",
-                }}
-              ></div>
-              <p>{news?.summary}</p>
-              <div
-                style={{
-                  margin: "10px 0",
-                  height: "1.5px",
-                  width: "100%",
-                  backgroundColor: "#67676767",
-                }}
-              ></div>
+           
               <p>
                 {" "}
                 <div dangerouslySetInnerHTML={{ __html: news?.content }} />
               </p>
               <p>
+              <div style={{height:"30px"}}/>
                 <em>
                   Để biết thêm thông tin và được tư vấn, xin vui lòng liên hệ:
                 </em>
@@ -159,6 +146,7 @@ function DetailsNews() {
           </div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

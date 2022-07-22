@@ -10,14 +10,15 @@ import {
 import { useNavigate } from "react-router-dom";
 import NewsApi from "../../api/NewsApi";
 
+
 function NewsCreatePage() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [news, setNews] = useState({
     name: "",
     urlImage: "",
     content: "",
     nameImage: "",
-    summary: "",
   });
 
   async function createNews() {
@@ -46,6 +47,7 @@ function NewsCreatePage() {
 
   const uploadImage = (file) => {
     try {
+      setLoading(true)
       if (!file) return;
       const storageRef = ref(storage, `images/news/${file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -59,6 +61,7 @@ function NewsCreatePage() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setNews({ ...news, nameImage: file.name, urlImage: downloadURL });
           });
+          setLoading(false)
         }
       );
       return true;
@@ -68,10 +71,12 @@ function NewsCreatePage() {
   };
   const deleteFromFirebaseSingle = (name) => {
     if (!name) return;
+    setLoading(true)
     const desertRef = ref(storage, `images/news/${name}`);
     deleteObject(desertRef)
       .then(() => {
         setNews({ ...news, urlImage: "", nameImage: "" });
+        setLoading(false)
       })
       .catch((error) => {
         console.log("not");
@@ -80,6 +85,7 @@ function NewsCreatePage() {
   // Func Delete image
   const deleteFromFirebaseOut = (name) => {
     if (!name) return;
+   
     const desertRef = ref(storage, `images/news/${name}`);
     deleteObject(desertRef)
       .then(() => {
@@ -94,7 +100,6 @@ function NewsCreatePage() {
     if (
       news.name === "" ||
       news.content === "" ||
-      news.summary === "" ||
       news.nameImage === "" ||
       news.urlImage === ""
     ) {
@@ -117,24 +122,12 @@ function NewsCreatePage() {
         <h2 className="title-page-admin">Thêm tin tức mới</h2>
 
         <div className="form-group ">
-          <label>Tên dự án</label>
+          <label>Tên bài viết</label>
           <input
             onChange={(e) => {
               setNews({ ...news, name: e.target.value });
             }}
             type="email"
-            className="form-control"
-          />
-        </div>
-        <div className="form-group ">
-          <label>
-            Giới thiệu chung (hiển thị nội dung tóm tắt trên các thẻ bài viết)
-          </label>
-          <textarea
-            onChange={(e) => {
-              setNews({ ...news, summary: e.target.value });
-            }}
-           style={{height:"150px"}}
             className="form-control"
           />
         </div>
@@ -186,6 +179,9 @@ function NewsCreatePage() {
               <label>Nội dung</label>
 
               <JoditEditor
+               onBlur={(newContent) => {
+                setNews({ ...news, content: newContent });
+              }}
                 onChange={(newContent) => {
                   setNews({ ...news, content: newContent });
                 }}
@@ -195,6 +191,7 @@ function NewsCreatePage() {
             </div>
             <div className="group-btn">
               <button
+              disabled={loading}
                 onClick={submitProject}
                 type="submit"
                 className="btn-admin btn btn-primary"

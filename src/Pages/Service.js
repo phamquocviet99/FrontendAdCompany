@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import "./Style/Service.css";
 import BoxService1 from "../components/BoxService1/BoxService1";
 import BoxService2 from "../components/BoxService2/BoxService2";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function Service() {
   useEffect(() => {
@@ -132,6 +133,7 @@ function Service() {
           )}
         </div>
       </div>
+      <OnTop/>
     </div>
   );
 }

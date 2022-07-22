@@ -23,20 +23,23 @@ function ProductCreate() {
     surname: "",
     size: "",
     uses: "",
-    price:"",
+    price: "",
     description: "",
     idCategory: "",
     avatar: { url: "", name: "" },
     image: [],
   });
   const [listCategory, setListCategory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+
     const FetchListCategory = async () => {
       try {
         const response = await CategoryProductApi.getAll();
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
-          setListCategory(data.data);
+        setListCategory(data.data)
         }
       } catch (error) {
         console.log(error);
@@ -45,6 +48,7 @@ function ProductCreate() {
     FetchListCategory();
   }, []);
   const uploadImage = (files) => {
+    setLoading(true);
     try {
       if (!files) return;
       const urls = product.image;
@@ -61,6 +65,7 @@ function ProductCreate() {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               urls.push({ name: file.name, url: downloadURL });
               setProduct({ ...product, image: urls });
+              setLoading(false);
             });
           }
         );
@@ -72,6 +77,7 @@ function ProductCreate() {
     }
   };
   const uploadAvatar = (file) => {
+    setLoading(true)
     try {
       if (!file) return;
       const storageRef = ref(storage, `images/product/avatar/${file.name}`);
@@ -86,6 +92,7 @@ function ProductCreate() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             const avatar = { name: file.name, url: downloadURL };
             setProduct({ ...product, avatar: avatar });
+            setLoading(false)
           });
         }
       );
@@ -127,7 +134,7 @@ function ProductCreate() {
     }
   }
   async function createProduct() {
-    console.log(product)
+    console.log(product);
     try {
       const response = await ProductApi.create(product);
       const data = JSON.parse(JSON.stringify(response));
@@ -141,6 +148,7 @@ function ProductCreate() {
     }
   }
   const deleteFromFirebaseSingle = (file) => {
+    setLoading(true)
     if (!file) return;
     const desertRef = ref(storage, `images/product/image/${file.name}`);
     deleteObject(desertRef)
@@ -152,18 +160,21 @@ function ProductCreate() {
           }
         }
         setProduct({ ...product, image: listImg });
+        setLoading(false)
       })
       .catch((error) => {
         console.log("not");
       });
   };
   const deleteAvatarFromFirebaseSingle = (file) => {
+    setLoading(true)
     if (!file) return;
     const desertRef = ref(storage, `images/product/avatar/${file}`);
     deleteObject(desertRef)
       .then(() => {
         const avatar = { name: "", url: "" };
         setProduct({ ...product, avatar: avatar });
+        setLoading(false)
       })
       .catch((error) => {
         console.log("not");
@@ -244,7 +255,8 @@ function ProductCreate() {
                 }}
                 className="form-control"
               />
-            </div><div className=" form-group">
+            </div>
+            <div className=" form-group">
               <label>Các hình ảnh về cây (chọn được nhiều ảnh)</label>
 
               <div className="input-group">
@@ -257,8 +269,13 @@ function ProductCreate() {
                 <label className="input-group-text">Upload</label>
               </div>
             </div>
-
-           
+            {loading ? (
+              <div>
+                <h3>Đang tải hình ảnh, vui lòng đợi...</h3>
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
           <div className="col-md-6">
             <div className="form-group">
@@ -321,15 +338,23 @@ function ProductCreate() {
               <label>Hình ảnh đại diện (chỉ chọn 1 ảnh)</label>
 
               <div className="input-group">
-                <input  disabled={product?.avatar.name !== "" ? true : false}
+                <input
+                  disabled={product?.avatar.name !== "" ? true : false}
                   onChange={handleChangeAvatar}
                   type="file"
                   className="form-control"
                 />
                 <label className="input-group-text">Upload</label>
               </div>
-            </div>
+            </div> {loading ? (
+              <div>
+                <h3>Đang tải hình ảnh, vui lòng đợi...</h3>
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
+         
         </div>
         <div className="row">
           <div className="col-md-12 image-review">
@@ -387,18 +412,22 @@ function ProductCreate() {
           <div className="col-md-12">
             {" "}
             <div className=" form-group">
-              <label>Nội dung</label>
+              <label>Nội dung (Vui lòng chọn font chữ Georgia để phù hợp )</label>
 
               <JoditEditor
                 onChange={(newContent) => {
                   setProduct({ ...product, description: newContent });
                 }}
-                sName="form-control"
+                onBlur={(newContent) => {
+                  setProduct({ ...product, description: newContent });
+                }}
+                className="form-control"
                 tabIndex={1}
               />
             </div>
             <div className="group-btn">
               <button
+              disabled={loading}
                 onClick={submitProduct}
                 type="submit"
                 className="btn-admin btn btn-primary"

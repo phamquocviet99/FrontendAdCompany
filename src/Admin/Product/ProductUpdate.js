@@ -16,6 +16,7 @@ import ProductApi from "../../api/ProductApi";
 function ProductUpdate() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({
     commonName: "",
     orderName: "",
@@ -23,7 +24,7 @@ function ProductUpdate() {
     englishName: "",
     surname: "",
     size: "",
-    price:"",
+    price: "",
     uses: "",
     description: "",
     idCategory: "",
@@ -62,6 +63,7 @@ function ProductUpdate() {
   const uploadImage = (files) => {
     try {
       if (!files) return;
+      setLoading(true);
       const urls = product.image;
       for (const file of files) {
         const storageRef = ref(storage, `images/product/image/${file.name}`);
@@ -76,6 +78,7 @@ function ProductUpdate() {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               urls.push({ name: file.name, url: downloadURL });
               setProduct({ ...product, image: urls });
+              setLoading(false);
             });
           }
         );
@@ -88,6 +91,7 @@ function ProductUpdate() {
   };
   const uploadAvatar = (file) => {
     try {
+      setLoading(true);
       if (!file) return;
       const storageRef = ref(storage, `images/product/avatar/${file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -101,6 +105,7 @@ function ProductUpdate() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             const avatar = { name: file.name, url: downloadURL };
             setProduct({ ...product, avatar: avatar });
+            setLoading(false);
           });
         }
       );
@@ -157,6 +162,7 @@ function ProductUpdate() {
   }
   const deleteFromFirebaseSingle = (file) => {
     if (!file) return;
+    setLoading(true);
     const desertRef = ref(storage, `images/product/image/${file.name}`);
     deleteObject(desertRef)
       .then(() => {
@@ -167,6 +173,7 @@ function ProductUpdate() {
           }
         }
         setProduct({ ...product, image: listImg });
+        setLoading(false);
       })
       .catch((error) => {
         console.log("not");
@@ -174,11 +181,13 @@ function ProductUpdate() {
   };
   const deleteAvatarFromFirebaseSingle = (file) => {
     if (!file) return;
+    setLoading(true);
     const desertRef = ref(storage, `images/product/avatar/${file}`);
     deleteObject(desertRef)
       .then(() => {
         const avatar = { name: "", url: "" };
         setProduct({ ...product, avatar: avatar });
+        setLoading(false);
       })
       .catch((error) => {
         console.log("not");
@@ -400,12 +409,16 @@ function ProductUpdate() {
                 onChange={(newContent) => {
                   setProduct({ ...product, description: newContent });
                 }}
-                sName="form-control"
+                onBlur={(newContent) => {
+                  setProduct({ ...product, description: newContent });
+                }}
+                className="form-control"
                 tabIndex={1}
               />
             </div>
             <div className="group-btn">
               <button
+                disabled={loading}
                 onClick={submitProduct}
                 type="submit"
                 className="btn-admin btn btn-primary"

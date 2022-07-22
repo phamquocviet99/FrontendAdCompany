@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { async } from "@firebase/util";
 import Product from "./Product";
 import BoxProduct from "../components/BoxProduct/BoxProduct";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function ProductDetails() {
   useEffect(() => {
@@ -270,6 +271,7 @@ function ProductDetails() {
           </div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

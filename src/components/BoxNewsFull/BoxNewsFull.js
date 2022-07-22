@@ -34,7 +34,7 @@ function BoxNewsFull({ project }) {
   } else {
     return (
       <a href={`/du-an/chi-tiet/${project._id}`} className="box-news-full">
-        <img alt="" src=  {project?.image[0].url} />
+        <img alt="" src=  {project?.image[ Math.floor(Math.random() * project?.image.length)].url} />
        
         <div className="row infor-news-full">
           <div className="col-xs-12 title-post ed-food-title">
@@ -53,6 +53,7 @@ function BoxNewsFull({ project }) {
                 Xem thêm
               </a>
             </div>
+            <div style={{height:"20px"}}/>
           </div>
         </div>
       </a>

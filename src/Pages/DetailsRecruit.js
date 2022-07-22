@@ -3,6 +3,7 @@ import "./Style/DetailsRecruit.css";
 import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import RecruitApi from "../api/RecruitApi";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function DetailsRecruit() {
   const { id } = useParams();
@@ -82,6 +83,7 @@ function DetailsRecruit() {
           </div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

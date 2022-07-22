@@ -20,7 +20,8 @@
 }
 .img-new-details-thumb{
     width: 100%;
-    height: auto;
+    height: 516px;
+    object-fit: cover;
 }
 .title-right-news-dt{
     padding-top: 10px; 

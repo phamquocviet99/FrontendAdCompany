@@ -32,7 +32,8 @@ function BoxNew({ props }) {
         </a>
         <h5 />
         <p>
-         {props?.summary}
+        <div dangerouslySetInnerHTML={{ __html: props?.content }} />
+       
         </p>
         <div className="see-more">
           <a href={`/tin-tuc/chi-tiet/${props._id}`}>

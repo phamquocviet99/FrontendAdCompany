@@ -6,6 +6,7 @@ import BoxProduct from "../components/BoxProduct/BoxProduct";
 import CategoryProductApi from "../api/CategoryProductApi";
 import { useParams, useNavigate } from "react-router-dom";
 import ProductApi from "../api/ProductApi";
+import OnTop from "../components/BacktoTop/OnTop";
 function Product() {
   const navigator = useNavigate();
   const [listCategory, setListCategory] = useState([]);
@@ -240,6 +241,7 @@ function Product() {
           </button>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

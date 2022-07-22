@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Style/Recruit.css";
 import { motion } from "framer-motion";
 import RecruitApi from "../api/RecruitApi";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function Recruit() {
   const [listRecruit, setListRecruit] = useState([]);
@@ -79,6 +80,7 @@ function Recruit() {
           </div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

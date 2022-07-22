@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
 import userApi from "../../api/userApi";
+import "../News/News.css"
 
 function UserAdmin() {
   const [listUser, setListUser] = useState([]);
@@ -47,6 +48,7 @@ function UserAdmin() {
       <h2 className="title-page-admin">Danh sách người dùng</h2>
 
       <div>
+      <div className="auto-scroll-table">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -80,6 +82,7 @@ function UserAdmin() {
             </tbody>
           ))}
         </Table>
+        </div>
         <div className="group-btn">
           <a
             href="/admin/nguoi-dung/tao"

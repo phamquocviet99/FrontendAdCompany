@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import "./Style/About.css";
 import PartnerApi from "../api/PartnerApi";
 import ProjectApi from "../api/ProjectApi";
+import OnTop from "../components/BacktoTop/OnTop";
 
 function About() {
   const [width, setWidth] = useState(0);
@@ -114,28 +115,28 @@ function About() {
               <img
                 className="pic-about-page"
                 alt=""
-                src={require("../images/images/news-1.jpg")}
+                src={require("../images/images/about (1).jpg")}
               ></img>
             </div>
             <div className="col-md-3 col-sm-6">
               <img
                 className="pic-about-page"
                 alt=""
-                src={require("../images/images/news-1.jpg")}
+                src={require("../images/images/about (2).jpg")}
               ></img>
             </div>
             <div className="col-md-3 col-sm-6">
               <img
                 className="pic-about-page"
                 alt=""
-                src={require("../images/images/news-1.jpg")}
+                src={require("../images/images/aboutt (1).jpg")}
               ></img>
             </div>
             <div className="col-md-3 col-sm-6">
               <img
                 className="pic-about-page"
                 alt=""
-                src={require("../images/images/news-1.jpg")}
+                src={require("../images/images/aboutt (2).jpg")}
               ></img>
             </div>
           </div>
@@ -216,6 +217,7 @@ function About() {
           </motion.div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

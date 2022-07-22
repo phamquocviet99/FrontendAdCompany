@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
-
+import "../News/News.css"
 import { storage } from "../../api/FirebaseConfig";
 import {
   ref,
@@ -134,6 +134,7 @@ function ProductPageAdmin() {
         </div>
       </div>
       <div>
+      <div className="auto-scroll-table">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -194,6 +195,7 @@ function ProductPageAdmin() {
             ))}
           </tbody>
         </Table>
+        </div>
         <div className="group-btn">
           <a
             href="/admin/san-pham/tao"

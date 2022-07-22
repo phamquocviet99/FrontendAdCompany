@@ -57,12 +57,13 @@ function NewsPageAdmin() {
       <h2 className="title-page-admin">Danh sách các tin tức</h2>
 
       <div>
+      <div className="auto-scroll-table">
         <Table striped bordered hover>
           <thead>
             <tr>
               <th style={{ width: "130px" }}>STT</th>
               <th>Tên bài viết</th>
-              <th>Tóm tắt</th>
+           
               <th>Ảnh bìa</th>
               <th>Số người xem</th>
               <th>Nội dung</th>
@@ -76,7 +77,7 @@ function NewsPageAdmin() {
                 <td>{index}</td>
 
                 <td>{n?.name}</td>
-                <td>{n?.summary}</td>
+                
                 <td>
                   <img
                     className="img-news-admin"
@@ -111,6 +112,7 @@ function NewsPageAdmin() {
             </tbody>
           ))}
         </Table>
+        </div>
         <div className="group-btn">
           <a
             href="/admin/tin-tuc/tao"

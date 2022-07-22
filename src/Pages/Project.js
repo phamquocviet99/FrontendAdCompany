@@ -5,17 +5,18 @@ import BoxNewsFull from "../components/BoxNewsFull/BoxNewsFull";
 import CategoryProjectApi from "../api/CategoryProjectApi";
 import ProjectApi from "../api/ProjectApi";
 import { useParams } from "react-router-dom";
+import OnTop from "../components/BacktoTop/OnTop";
 function Project() {
   const { id } = useParams();
   const [listCategory, setListCategory] = useState([]);
   const [listProject, setListProject] = useState([]);
   const [pagination, setPagination] = useState({
     page: 0,
-    limit: 2,
+    limit: 6,
     countRows: 1,
   });
   const [filters, setFilters] = useState({
-    limit: 2,
+    limit: 6,
     page: 0,
   });
   const totalPages = Math.ceil(pagination.countRows / pagination.limit);
@@ -141,6 +142,7 @@ function Project() {
           </div>
         </div>
       </article>
+      <OnTop/>
     </div>
   );
 }

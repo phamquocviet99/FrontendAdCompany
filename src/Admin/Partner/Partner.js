@@ -8,6 +8,7 @@ import {
   uploadBytesResumable,
   deleteObject,
 } from "firebase/storage";
+import "../News/News.css"
 import { async } from "@firebase/util";
 function Partner() {
   const [listPartner, setListPartner] = useState([]);
@@ -203,6 +204,7 @@ function Partner() {
         </div>
       </div>
       <div>
+      <div className="auto-scroll-table">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -237,6 +239,7 @@ function Partner() {
             ))}
           </tbody>
         </Table>
+        </div>
       </div>
     </div>
   );
