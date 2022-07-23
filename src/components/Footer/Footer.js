@@ -116,19 +116,19 @@ function Footer() {
                 </div>
                 <div className="col-sm-4 col-xs-12">
                   <div className="row text-center">
-                    {" "}
-                    <div className="circle-icon">
+                   
+                    <a href={information?.facebook} className="circle-icon">
                       <i className="icon-bottom-ft fa fa-facebook" />
-                    </div>
-                    <div className="circle-icon">
+                    </a>
+                    <a href={information?.google} className="circle-icon">
                       <i className="icon-bottom-ft fa fa-google" />
-                    </div>
-                    <div className="circle-icon">
+                      </a>
+                    <a href={information?.twitter} className="circle-icon">
                       <i className="icon-bottom-ft fa fa-twitter" />
-                    </div>
-                    <div className="circle-icon">
+                      </a>
+                    <a href={information?.youtube} className="circle-icon">
                       <i className="icon-bottom-ft fa fa-youtube" />
-                    </div>
+                      </a>
                   </div>
                 </div>
               </div>

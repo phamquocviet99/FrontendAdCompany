@@ -48,3 +48,12 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
+.limit-txt-location{
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

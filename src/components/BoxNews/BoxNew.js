@@ -30,7 +30,7 @@ function BoxNew({ props }) {
         <a  href={`/tin-tuc/chi-tiet/${props._id}`}>
           <h2>{props?.name}</h2>
         </a>
-        <h5 />
+        <h5/>
         <p>
         <div dangerouslySetInnerHTML={{ __html: props?.content }} />
        

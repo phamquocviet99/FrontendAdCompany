@@ -64,7 +64,20 @@ function NewsUpdatePage() {
     try {
       setLoading(true)
       if (!file) return;
-      const storageRef = ref(storage, `images/news/${file.name}`);
+      var today = new Date();
+
+      const name =
+        file.name +
+        today.getDay()+
+        ":" +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds() +
+        ":" +
+        today.getMilliseconds();
+      const storageRef = ref(storage, `images/news/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
@@ -74,7 +87,7 @@ function NewsUpdatePage() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setNews({ ...news, nameImage: file.name, urlImage: downloadURL });
+            setNews({ ...news, nameImage: name, urlImage: downloadURL });
             setLoading(false)
           });
         }
@@ -177,7 +190,17 @@ function NewsUpdatePage() {
           <div className="col-md-12">
             {" "}
             <div className=" form-group">
-              <label>Nội dung</label>
+            <label>Nội dung </label><br/>
+              <label>
+                Vui lòng sử dụng font chữ Georgia để phù hợp với font chữ của
+                website
+              </label>
+              <label>
+                Nếu có đăng hình ảnh, copy link hình ảnh, vào phần edit (cây bút
+                khi nhấn vào ảnh) chọn <b>Advanced</b>, phần <b>Styles</b> dán thuộc
+                tính <br/> (max-height: 100%; max-width: 100%; object-fit : cover) để
+                hình ảnh đẹp hơn
+              </label>
 
               <JoditEditor
                 value={news?.content}

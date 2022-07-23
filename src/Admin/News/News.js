@@ -86,7 +86,7 @@ function NewsPageAdmin() {
                   ></img>
                 </td>
                 <td>{n?.view}</td>
-                <td>
+                <td style={{maxWidth:"45vw"}}>
                   <div
                     className="auto-scroll"
                     dangerouslySetInnerHTML={{ __html: n?.content }}

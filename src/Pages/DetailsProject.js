@@ -112,7 +112,9 @@ function DetailsProject() {
                 <Carousel autoPlay interval="2000" transitionTime="1000">
                   {project?.image?.map((i, index) => (
                     <div key={index}>
-                      <img alt="" src={i?.url} />
+                      <img style={{
+                       
+                      }} alt="" src={i?.url} />
                     </div>
                   ))}
                 </Carousel>

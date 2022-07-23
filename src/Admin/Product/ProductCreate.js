@@ -53,7 +53,20 @@ function ProductCreate() {
       if (!files) return;
       const urls = product.image;
       for (const file of files) {
-        const storageRef = ref(storage, `images/product/image/${file.name}`);
+        var today = new Date();
+
+        const name =
+          file.name +
+          today.getDay()+
+          ":" +
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds() +
+          ":" +
+          today.getMilliseconds();
+        const storageRef = ref(storage, `images/product/image/${name}`);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on(
           "state_changed",
@@ -63,7 +76,7 @@ function ProductCreate() {
           },
           () => {
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              urls.push({ name: file.name, url: downloadURL });
+              urls.push({ name: name, url: downloadURL });
               setProduct({ ...product, image: urls });
               setLoading(false);
             });
@@ -80,7 +93,20 @@ function ProductCreate() {
     setLoading(true)
     try {
       if (!file) return;
-      const storageRef = ref(storage, `images/product/avatar/${file.name}`);
+      var today = new Date();
+
+        const name =
+          file.name +
+          today.getDay()+
+          ":" +
+          today.getHours() +
+          ":" +
+          today.getMinutes() +
+          ":" +
+          today.getSeconds() +
+          ":" +
+          today.getMilliseconds();
+      const storageRef = ref(storage, `images/product/avatar/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
@@ -90,7 +116,7 @@ function ProductCreate() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            const avatar = { name: file.name, url: downloadURL };
+            const avatar = { name: name, url: downloadURL };
             setProduct({ ...product, avatar: avatar });
             setLoading(false)
           });
@@ -412,7 +438,17 @@ function ProductCreate() {
           <div className="col-md-12">
             {" "}
             <div className=" form-group">
-              <label>Nội dung (Vui lòng chọn font chữ Georgia để phù hợp )</label>
+            <label>Nội dung </label><br/>
+              <label>
+                Vui lòng sử dụng font chữ Georgia để phù hợp với font chữ của
+                website
+              </label>
+              <label>
+                Nếu có đăng hình ảnh, copy link hình ảnh, vào phần edit (cây bút
+                khi nhấn vào ảnh) chọn <b>Advanced</b>, phần <b>Styles</b> dán thuộc
+                tính <br/> (max-height: 100%; max-width: 100%; object-fit : cover) để
+                hình ảnh đẹp hơn
+              </label>
 
               <JoditEditor
                 onChange={(newContent) => {

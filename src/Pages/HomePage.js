@@ -310,7 +310,11 @@ function HomePage() {
                         className="txt-news-hom"
                         href={`/tin-tuc/chi-tiet/${listNews[0]?._id}`}
                       >
-                        {listNews[0]?.summary}
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: listNews[0]?.content,
+                          }}
+                        />
                       </a>
                     </p>
                   </div>
@@ -517,7 +521,7 @@ function HomePage() {
               marginTop: "15px",
             }}
           >
-            <a href="/du-an"  className="btn btn-outline-success">
+            <a href="/du-an" className="btn btn-outline-success">
               XEM THÊM
             </a>
           </div>

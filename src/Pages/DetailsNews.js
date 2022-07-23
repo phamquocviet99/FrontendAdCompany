@@ -7,11 +7,30 @@ import { useParams } from "react-router-dom";
 import NewsApi from "../api/NewsApi";
 import OnTop from "../components/BacktoTop/OnTop";
 import BoxNewsRight from "../components/BoxNewsRight/BoxNewsRight";
+import InformationApi from "../api/InformationApi";
 
 function DetailsNews() {
   const { id } = useParams();
   const [news, setNews] = useState({});
   const [listNews, setListNews] = useState([]);
+  const [information, setInformation] = useState({});
+  useEffect(() => {
+    const fetchInfor = async () => {
+      try {
+        const response = await InformationApi.getById(
+          "62b0756892dfc7d99e74b340"
+        );
+        const data = JSON.parse(JSON.stringify(response));
+        // setInformation(data);
+        if (!data.error) {
+          setInformation(data.inforCompany);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchInfor();
+  }, []);
   useEffect(() => {
     document.title = "TIN TỨC";
     async function FetchNews() {
@@ -31,10 +50,16 @@ function DetailsNews() {
   useEffect(() => {
     const FetchListNews = async () => {
       try {
-        const response = await NewsApi.getAll({ page: 0, limit: 4 });
+        const response = await NewsApi.getAll({ page: 0, limit: 7 });
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
-          setListNews(data.data);
+          var listData = [];
+          for (const neww of data.data) {
+            if (neww._id !== id) {
+              listData.push(neww);
+            }
+          }
+          setListNews(listData);
         }
       } catch (error) {
         console.log(error);
@@ -85,37 +110,36 @@ function DetailsNews() {
               data-aos-duration="2000"
               className="col-md-4"
             >
-              {listNews?.map((n, index) => (
-                <BoxNewsRight key={index} news={n} />
-              ))}
+              {listNews?.map((n, index) =>
+                n._id !== id ? <BoxNewsRight key={index} news={n} /> : <></>
+              )}
             </div>
           </div>
           <div className="row">
+            <div style={{height:"20px"}}/>
             <div
               data-aos="fade-right"
               data-aos-duration="2000"
               className="col-md-8"
             >
-           
               <p>
                 {" "}
                 <div dangerouslySetInnerHTML={{ __html: news?.content }} />
               </p>
               <p>
-              <div style={{height:"30px"}}/>
+                <div style={{ height: "30px" }} />
                 <em>
                   Để biết thêm thông tin và được tư vấn, xin vui lòng liên hệ:
                 </em>
                 <br />
                 <span style={{ color: "#669900" }}>
-                  <strong>Công Ty Cổ Phần Đầu Tư L.A.D</strong>
+                  <strong>{information?.name}</strong>
                   <br />
-                  Địa chỉ: D20 KDC Phước Nguyên Hưng, Nguyễn Hữu Thọ, Ấp 5, Xã
-                  Phước Kiển, H. Nhà Bè, Tp. Hồ Chí Minh
+                  Địa chỉ: {information?.address}
                   <br />
-                  Hotline: 0903.699.664
+                  Hotline: {information?.phone}
                   <br />
-                  Email: lad.jsc168@gmail.com
+                  Email: {information?.email}
                 </span>
               </p>
             </div>
@@ -146,7 +170,7 @@ function DetailsNews() {
           </div>
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

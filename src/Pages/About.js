@@ -12,7 +12,7 @@ function About() {
   const carousel = useRef();
   useEffect(() => {
     const FetchFullPartner = async () => {
-      document.title="GIỚI THIỆU"
+      document.title = "GIỚI THIỆU";
       try {
         const response = await PartnerApi.getAll();
         const data = JSON.parse(JSON.stringify(response));
@@ -86,6 +86,7 @@ function About() {
                   trang thiết bị thi công hiện đại, nguồn vườn ươm rộng khắp
                   cùng với đội ngũ Kiến trúc sư, Kỹ sư cảnh quan có nhiều kinh
                   nghiệm.
+                  <br></br>
                   <br></br>
                   Chúng tôi luôn đảm bảo một dịch vụ thiết kế và thi công cảnh
                   quan chất lượng và tiết kiệm cho khách hàng bằng các quy trình
@@ -164,34 +165,42 @@ function About() {
           </div>
           <div className="row">
             {listProject?.map((p, index) => (
-              <div className="col-md-4">
-                <div className="box-news-full">
-                  <img alt="" src={p?.image[0]?.url} />
-                  <div className="row infor-news-full">
-                    <div className="col-xs-12 title-post ed-food-title">
-                      <h2>{p?.name}</h2>
-                      <div className="txt-news-full limit-text-about">
-                        <p>
-                         <p>Chủ đầu tư : <span>{p?.investor}</span></p>
-                         <p>Dịch vụ : <span>{p?.nameCategory}</span></p>
-                         <p>Địa điểm : <span>{p?.location}</span></p>
-                        </p>
-                      </div>
-                      <div className="see-more">
-                        <a href={`/du-an/chi-tiet/${p?._id}`}>
-                          <i class="fa fa-arrow-right"></i>
-                          Xem thêm
-                        </a>
+              <div key={index} className="col-md-4">
+                <a href={`/du-an/chi-tiet/${p?._id}`}>
+                  <div className="box-news-full">
+                    <img alt="" src={p?.image[0]?.url} />
+                    <div className="row infor-news-full">
+                      <div className="col-xs-12 title-post ed-food-title">
+                        <h2>{p?.name}</h2>
+                        <div className="txt-news-full limit-text-about">
+                          <p>
+                            <p>
+                              Chủ đầu tư : <span>{p?.investor}</span>
+                            </p>
+                            <p>
+                              Dịch vụ : <span>{p?.nameCategory}</span>
+                            </p>
+                            <p>
+                              Địa điểm : <span>{p?.location}</span>
+                            </p>
+                          </p>
+                        </div>
+                        <div className="see-more">
+                          <a href={`/du-an/chi-tiet/${p?._id}`}>
+                            <i className="fa fa-arrow-right"></i>
+                            Xem thêm
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             ))}
 
             <div className="col-lg-12 ">
               <div className="text-center" style={{ marginTop: "15px" }}>
-                <button className="btn btn-outline-success">XEM THÊM</button>
+                <a href="/du-an" className="btn btn-outline-success">XEM THÊM</a>
               </div>
             </div>
           </div>
@@ -202,14 +211,14 @@ function About() {
           <div className="home-title">
             <p className="font-title-home">đối tác chiến lược</p>
           </div>
-          <motion.div ref={carousel} className="carousel-partner">
+          <motion.div ref={carousel} className="carousel-partnerr">
             <motion.div
               drag="x"
               dragConstraints={{ right: 0, left: -width }}
-              className="inner-carousel-partner"
+              className="inner-carousel-partnerr"
             >
               {listPartner?.map((p, index) => (
-                <motion.div key={index} className="  item-img-partner">
+                <motion.div key={index} className="item-img-partnerr">
                   <img alt={p.nameImage} src={p?.urlImage}></img>
                 </motion.div>
               ))}
@@ -217,7 +226,7 @@ function About() {
           </motion.div>
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

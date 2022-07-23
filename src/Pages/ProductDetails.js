@@ -13,6 +13,7 @@ import { async } from "@firebase/util";
 import Product from "./Product";
 import BoxProduct from "../components/BoxProduct/BoxProduct";
 import OnTop from "../components/BacktoTop/OnTop";
+import InformationApi from "../api/InformationApi";
 
 function ProductDetails() {
   useEffect(() => {
@@ -23,6 +24,24 @@ function ProductDetails() {
   const [listProduct, setListProduct] = useState([]);
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  const [information, setInformation] = useState({});
+  useEffect(() => {
+    const fetchInfor = async () => {
+      try {
+        const response = await InformationApi.getById(
+          "62b0756892dfc7d99e74b340"
+        );
+        const data = JSON.parse(JSON.stringify(response));
+        // setInformation(data);
+        if(!data.error){
+        setInformation(data.inforCompany)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchInfor();
+  }, []);
   useEffect(() => {
     async function FetchProduct() {
       try {
@@ -186,7 +205,6 @@ function ProductDetails() {
                       <img alt="" src={i?.url} />
                     </div>
                   ))}
-                  
                 </Carousel>
               </div>
               <div className="col-md-3 col-xs-12">
@@ -205,22 +223,61 @@ function ProductDetails() {
                 </div>
                 <span>
                   <p style={{ marginLeft: "0in", marginRight: "0in" }}>
-                    <strong>Tên thường gọi:</strong>{" "}
-                    <em>{product?.commonName}</em>
+                    <strong>Tên thường: </strong> <em>{product?.commonName}</em>
                     <br />
-                    <strong>Tên gọi khác:</strong> <em>{product?.orderName}</em>
-                    <br />
-                    <strong>Tên khoa học:</strong>
-                    <em>{product?.scienceName}</em>
-                    <br />
-                    <strong>Tên tiếng anh:</strong>
-                    <em>{product?.englishName}</em>
-                    <br />
-                    <strong>Họ:</strong> <em>{product?.surname}</em>
-                    <br />
-                    <strong>Kích thước:</strong> {product?.size}
-                    <br />
-                    <strong>Công dụng:</strong> {product?.uses}
+                    {product?.orderName ? (
+                      <>
+                        {" "}
+                        <strong>Tên gọi khác: </strong>{" "}
+                        <em>{product?.orderName}</em>
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {product?.scienceName ? (
+                      <>
+                        {" "}
+                        <strong>Tên khoa học: </strong>
+                        <em>{product?.scienceName}</em>
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {product?.englishName ? (
+                      <>
+                        <strong>Tên tiếng anh: </strong>
+                        <em>{product?.englishName}</em>
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {product?.surname ? (
+                      <>
+                        <strong>Họ: </strong> <em>{product?.surname}</em>
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {product?.size ? (
+                      <>
+                        <strong>Kích thước: </strong> {product?.size}
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
+                    {product?.uses ? (
+                      <>
+                        <strong>Công dụng: </strong> {product?.uses}
+                        <br />
+                      </>
+                    ) : (
+                      <></>
+                    )}
                   </p>
                 </span>
                 <a href="/" className="fb-share">
@@ -228,6 +285,7 @@ function ProductDetails() {
                   {"   "}Chia sẻ
                 </a>
               </div>
+              <div className="mb-5"/>
               <div className="col-lg-12" style={{ clear: "both" }}>
                 <div className="info-dt-gd">
                   <h3>Mô tả sản phẩm</h3>
@@ -242,14 +300,13 @@ function ProductDetails() {
                     </em>
                     <br />
                     <span style={{ color: "#669900" }}>
-                      <strong>Công Ty Cổ Phần Đầu Tư L.A.D</strong>
+                      <strong>{information?.name}</strong>
                       <br />
-                      Địa chỉ: D20 KDC Phước Nguyên Hưng, Nguyễn Hữu Thọ, Ấp 5,
-                      Xã Phước Kiển, H. Nhà Bè, Tp. Hồ Chí Minh
+                      Địa chỉ: {information?.address}
                       <br />
-                      Hotline: 0903.699.664
+                      Hotline: {information?.phone}
                       <br />
-                      Email: lad.jsc168@gmail.com
+                      Email: {information?.email}
                     </span>
                   </p>
                   <hr></hr>
@@ -263,15 +320,19 @@ function ProductDetails() {
             <p className="font-title-home">Sản phẩm cùng danh mục</p>
           </div>
           <div className="row mt-5">
-            {listProduct?.map((p, index) => (
-              <div className="col-sm-3">
-                <BoxProduct product={p} />
-              </div>
-            ))}
+            {listProduct?.map((p, index) =>
+              p._id !== id ? (
+                <div className="col-sm-3">
+                  <BoxProduct product={p} />
+                </div>
+              ) : (
+                <></>
+              )
+            )}
           </div>
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

@@ -10,10 +10,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import NewsApi from "../../api/NewsApi";
 
-
 function NewsCreatePage() {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [news, setNews] = useState({
     name: "",
     urlImage: "",
@@ -47,9 +46,22 @@ function NewsCreatePage() {
 
   const uploadImage = (file) => {
     try {
-      setLoading(true)
+      setLoading(true);
       if (!file) return;
-      const storageRef = ref(storage, `images/news/${file.name}`);
+      var today = new Date();
+
+      const name =
+        file.name +
+        today.getDay()+
+        ":" +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds() +
+        ":" +
+        today.getMilliseconds();
+      const storageRef = ref(storage, `images/news/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
@@ -59,9 +71,9 @@ function NewsCreatePage() {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setNews({ ...news, nameImage: file.name, urlImage: downloadURL });
+            setNews({ ...news, nameImage: name, urlImage: downloadURL });
           });
-          setLoading(false)
+          setLoading(false);
         }
       );
       return true;
@@ -71,12 +83,12 @@ function NewsCreatePage() {
   };
   const deleteFromFirebaseSingle = (name) => {
     if (!name) return;
-    setLoading(true)
+    setLoading(true);
     const desertRef = ref(storage, `images/news/${name}`);
     deleteObject(desertRef)
       .then(() => {
         setNews({ ...news, urlImage: "", nameImage: "" });
-        setLoading(false)
+        setLoading(false);
       })
       .catch((error) => {
         console.log("not");
@@ -85,7 +97,7 @@ function NewsCreatePage() {
   // Func Delete image
   const deleteFromFirebaseOut = (name) => {
     if (!name) return;
-   
+
     const desertRef = ref(storage, `images/news/${name}`);
     deleteObject(desertRef)
       .then(() => {
@@ -176,12 +188,22 @@ function NewsCreatePage() {
           <div className="col-md-12">
             {" "}
             <div className=" form-group">
-              <label>Nội dung</label>
+              <label>Nội dung </label><br/>
+              <label>
+                Vui lòng sử dụng font chữ Georgia để phù hợp với font chữ của
+                website
+              </label>
+              <label>
+                Nếu có đăng hình ảnh, copy link hình ảnh, vào phần edit (cây bút
+                khi nhấn vào ảnh) chọn <b>Advanced</b>, phần <b>Styles</b> dán thuộc
+                tính <br/> (max-height: 100%; max-width: 100%; object-fit : cover) để
+                hình ảnh đẹp hơn
+              </label>
 
               <JoditEditor
-               onBlur={(newContent) => {
-                setNews({ ...news, content: newContent });
-              }}
+                onBlur={(newContent) => {
+                  setNews({ ...news, content: newContent });
+                }}
                 onChange={(newContent) => {
                   setNews({ ...news, content: newContent });
                 }}
@@ -191,7 +213,7 @@ function NewsCreatePage() {
             </div>
             <div className="group-btn">
               <button
-              disabled={loading}
+                disabled={loading}
                 onClick={submitProject}
                 type="submit"
                 className="btn-admin btn btn-primary"

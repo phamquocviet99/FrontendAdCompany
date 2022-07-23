@@ -115,22 +115,23 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
-.item-img-partner {
+.item-img-partnerr {
   min-height: 25rem;
   min-width: 20rem;
   padding: 7px;
 }
-.item-img-partner img {
-  height: 100%;
-  width: 100%;
-  border-radius: 2rem;
+.item-img-partnerr > img {
+  height: 220px;
+  width: 220px;
+  border-radius: 1rem;
   pointer-events: none;
+  object-fit: cover;
 }
-.carousel-partner {
+.carousel-partnerr {
   cursor: grab;
   overflow: hidden;
 }
-.inner-carousel-partner {
+.inner-carousel-partnerr {
   display: flex;
 }
 @media screen and (max-width: 760px) {

@@ -43,7 +43,7 @@ function BoxNewsFull({ project }) {
               <p>
                 Chủ đầu tư : <span>{project?.investor}</span>
               </p>
-              <p>
+              <p className="limit-txt-location">
                 Địa điểm : <span>{project?.location}</span>
               </p>
             </div>

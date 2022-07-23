@@ -54,7 +54,7 @@ function ProjectCreatePageAdmin() {
     }
   }
 
-  const config = { readonly: false }
+
 
   // handle change value input
   function handleChangeName(e) {

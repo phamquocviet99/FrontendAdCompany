@@ -80,7 +80,7 @@ function Service() {
       id: "7",
       name: "cung cấp vật tư cảnh quan",
       image1:
-        "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvtcanhquan.jfif?alt=media&token=8a2d711f-0916-4353-9a11-bed0837fd84d",
+      "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvtcanhquana.jpg?alt=media&token=f3e1ed1a-4b1b-4fad-83d4-cb28c2cad1b4",
       image2:
         "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvtcanhquan.jpg?alt=media&token=078a45e3-303a-46c5-8bf4-d23546c151ee",
       summary:

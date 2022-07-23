@@ -93,7 +93,20 @@ function Partner() {
   const uploadAvatar = (file) => {
     try {
       if (!file) return;
-      const storageRef = ref(storage, `images/partner/avatar/${file.name}`);
+      var today = new Date();
+
+      const name =
+        file.name +
+        today.getDay()+
+        ":" +
+        today.getHours() +
+        ":" +
+        today.getMinutes() +
+        ":" +
+        today.getSeconds() +
+        ":" +
+        today.getMilliseconds();
+      const storageRef = ref(storage, `images/partner/avatar/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on(
         "state_changed",
@@ -105,7 +118,7 @@ function Partner() {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setPartner({
               ...partner,
-              nameImage: file.name,
+              nameImage: name,
               urlImage: downloadURL,
             });
           });
@@ -137,7 +150,7 @@ function Partner() {
         <div className="row">
           <div className="col-md-6">
             <div className="group-add-edit-product">
-              <p>Tên danh mục :</p>
+              <p>Tên đối tác :</p>
               <input
                 value={partner.name}
                 onChange={(e) => {

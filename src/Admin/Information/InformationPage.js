@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./InformationPage.css";
 import InformationApi from "../../api/InformationApi";
+import { useNavigate } from "react-router-dom";
 function InformationPage() {
   const [information, setInformation] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchInfor = async () => {
       try {
@@ -31,6 +33,7 @@ function InformationPage() {
       if (!data.error) {
         setInformation(data.updated);
         alert("Cập nhật thông tin công ty thành công");
+        navigate(-1);
       }
     } catch (error) {
       alert("Cập nhật thông tin công ty thất bại !");
