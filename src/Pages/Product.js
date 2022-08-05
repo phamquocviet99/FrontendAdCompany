@@ -12,6 +12,7 @@ function Product() {
   const [listCategory, setListCategory] = useState([]);
   const [listProduct, setListProduct] = useState([]);
   const [search, setSearch] = useState({ key: "" });
+  const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const [pagination, setPagination] = useState({
     page: 0,
@@ -61,11 +62,13 @@ function Product() {
   useEffect(() => {
     const FetchListProduct = async () => {
       try {
+        setLoading(true);
         const response = await ProductApi.getAll(filters);
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
           setListProduct(data.data);
           setPagination(data.pageInfo);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
@@ -181,7 +184,11 @@ function Product() {
       <article>
         <div className="container">
           <div className="row">
-            <div className="col-md-3">
+            <div
+              className="col-md-3"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <div className="home-title">
                 <p style={{ fontSize: "20px" }} className="font-title-home">
                   danh mục sản phẩm
@@ -213,35 +220,47 @@ function Product() {
               </div>
             </div>
             <div className="col-md-9 ed-title-thumb">
-              <div className="row">
-                {listProduct?.map((p, index) => (
-                  <div className="col-sm-4">
-                    <BoxProduct product={p} />
-                  </div>
-                ))}
-              </div>
+              {loading ? (
+                <></>
+              ) : (
+                <div className="row">
+                  {listProduct?.map((p, index) => (
+                    <div className="col-sm-4">
+                      <BoxProduct product={p} />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
         <div className="pagination">
-          <button
-            style={{ marginRight: "10px" }}
-            className="btn btn-outline-success"
-            disabled={pagination.page <= 0}
-            onClick={() => handlePageChange(pagination.page - 1)}
-          >
-            Quay lại
-          </button>
-          <button
-            disabled={pagination.page >= totalPages - 1}
-            onClick={() => handlePageChange(pagination.page + 1)}
-            className="btn btn-outline-success"
-          >
-            Xem thêm
-          </button>
+          {pagination.page <= 0 ? (
+            <></>
+          ) : (
+            <button
+              style={{ marginRight: "10px" }}
+              className="btn btn-outline-success"
+              disabled={pagination.page <= 0}
+              onClick={() => handlePageChange(pagination.page - 1)}
+            >
+              Quay lại
+            </button>
+          )}
+          {pagination.page >= totalPages - 1 ? (
+            <></>
+          ) : (
+            <button
+              className="btn btn-outline-success"
+              disabled={pagination.page >= totalPages - 1}
+              onClick={() => handlePageChange(pagination.page + 1)}
+            >
+              Xem thêm
+            </button>
+          )}
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

@@ -20,6 +20,13 @@
   font-size: 19px;
   margin-top: 10px;
   color: #232323;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  max-height: 33px;
 }
 .txt-box-product > h5 {
   border-bottom: 2px solid #3e7319;
@@ -43,3 +50,4 @@
   border-radius: 5px;
   border: 1px solid #f68e56;
 }
+

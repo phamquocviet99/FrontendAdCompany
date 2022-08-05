@@ -6,9 +6,9 @@ import OnTop from "../components/BacktoTop/OnTop";
 
 function Recruit() {
   const [listRecruit, setListRecruit] = useState([]);
-  
+
   useEffect(() => {
-    document.title="TUYỂN DỤNG"
+    document.title = "TUYỂN DỤNG";
     const FetchListRecruit = async () => {
       try {
         const response = await RecruitApi.getAll();
@@ -47,7 +47,11 @@ function Recruit() {
             {listRecruit?.map((r, index) => (
               <div className="ed-recuitment-1">
                 <div className="row">
-                  <div className="col-sm-9">
+                  <div
+                    className="col-sm-9"
+                    data-aos="fade-right"
+                    data-aos-duration={2000 + index * 500}
+                  >
                     <p className="name-cruit">{r?.name}</p>
                     <p className="des-cruit">
                       Ngày đăng : <span>{r?.createdAt}</span>
@@ -55,6 +59,8 @@ function Recruit() {
                   </div>
                   <div
                     className="col-sm-3"
+                    data-aos="fade-left"
+                    data-aos-duration={2000 + index * 500}
                     style={{
                       display: "flex",
                       justifyContent: "end",
@@ -80,7 +86,7 @@ function Recruit() {
           </div>
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

@@ -2,15 +2,13 @@ import React from "react";
 import "./BoxNews.css";
 
 function ChangeDate(text) {
-    if(!text)return
+  if (!text) return;
   return text.substring(8, 10) + "/" + text.substring(5, 7);
 }
 
 function BoxNew({ props }) {
-  
-
   return (
-    <div className="box-news">
+    <div className="box-news" >
       <a href={`/tin-tuc/chi-tiet/${props._id}`}>
         <img className="img-box-news" alt="" src={props?.urlImage}></img>
       </a>
@@ -27,13 +25,12 @@ function BoxNew({ props }) {
       </div>
 
       <div className="txt-box-news">
-        <a  href={`/tin-tuc/chi-tiet/${props._id}`}>
+        <a href={`/tin-tuc/chi-tiet/${props._id}`}>
           <h2>{props?.name}</h2>
         </a>
-        <h5/>
+        <h5 />
         <p>
-        <div dangerouslySetInnerHTML={{ __html: props?.content }} />
-       
+          <div dangerouslySetInnerHTML={{ __html: props?.content }} />
         </p>
         <div className="see-more">
           <a href={`/tin-tuc/chi-tiet/${props._id}`}>

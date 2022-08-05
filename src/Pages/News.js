@@ -17,16 +17,19 @@ function News() {
     limit: 18,
     page: 0,
   });
+  const [loading, setLoading] = useState(false);
   const totalPages = Math.ceil(pagination.countRows / pagination.limit);
   useEffect(() => {
-    document.title="TIN TỨC"
+    document.title = "TIN TỨC";
     const FetchListNews = async () => {
       try {
+        setLoading(true);
         const response = await NewsApi.getAll(filters);
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
           setListNews(data.data);
           setPagination(data.pageInfo);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
@@ -60,32 +63,63 @@ function News() {
       <article>
         <div className="container">
           <div className="row">
-            {listNews?.map((n, index) => (
-              <div key={index} className="col-md-4">
-                <BoxNew props={n} />
+            {loading ? (
+              <div
+                className="text-center"
+                style={{
+                  height: "780px",
+                  width: "100%",
+                  fontSize: "30px",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "#6f6f6f",
+                }}
+              >
+                Đang tải tin tức...
               </div>
-            ))}
+            ) : (
+              <div>
+                {listNews?.map((n, index) => (
+                  <div
+                    key={index}
+                    className="col-md-4"
+                    data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
+                    data-aos-duration="2000"
+                  >
+                    <BoxNew props={n} />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         <div className="pagination">
-          <button
-            disabled={pagination.page <= 0}
-            onClick={() => handlePageChange(pagination.page - 1)}
-            style={{ marginRight: "10px" }}
-            className="btn btn-outline-success"
-          >
-            Quay lại
-          </button>
-          <button
-            disabled={pagination.page >= totalPages - 1}
-            onClick={() => handlePageChange(pagination.page + 1)}
-            className="btn btn-outline-success"
-          >
-            Xem thêm
-          </button>
+          {pagination.page <= 0 ? (
+            <></>
+          ) : (
+            <button
+              style={{ marginRight: "10px" }}
+              className="btn btn-outline-success"
+              disabled={pagination.page <= 0}
+              onClick={() => handlePageChange(pagination.page - 1)}
+            >
+              Quay lại
+            </button>
+          )}
+          {pagination.page >= totalPages - 1 ? (
+            <></>
+          ) : (
+            <button
+              className="btn btn-outline-success"
+              disabled={pagination.page >= totalPages - 1}
+              onClick={() => handlePageChange(pagination.page + 1)}
+            >
+              Xem thêm
+            </button>
+          )}
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

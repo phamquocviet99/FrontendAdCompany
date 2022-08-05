@@ -112,28 +112,44 @@ function About() {
             </div>
           </div>
           <div className="row ed-pic-about-page">
-            <div className="col-md-3 col-sm-6">
+            <div
+              className="col-md-3 col-sm-6"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <img
                 className="pic-about-page"
                 alt=""
                 src={require("../images/images/about (1).jpg")}
               ></img>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div
+              className="col-md-3 col-sm-6"
+              data-aos="fade-right"
+              data-aos-duration="3000"
+            >
               <img
                 className="pic-about-page"
                 alt=""
                 src={require("../images/images/about (2).jpg")}
               ></img>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div
+              className="col-md-3 col-sm-6"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+            >
               <img
                 className="pic-about-page"
                 alt=""
                 src={require("../images/images/aboutt (1).jpg")}
               ></img>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div
+              className="col-md-3 col-sm-6"
+              data-aos="fade-left"
+              data-aos-duration="3000"
+            >
               <img
                 className="pic-about-page"
                 alt=""
@@ -143,7 +159,11 @@ function About() {
           </div>
           <div className="row">
             <div className="col-xs-12">
-              <div className="txt-about">
+              <div
+                className="txt-about"
+                data-aos="fade-up"
+                data-aos-duration="2500"
+              >
                 <p>
                   Với vai trò cải thiện khí hậu - lá phổi của trái đất, cải
                   thiện sức khỏe con người, cây xanh đóng vai trò ngày càng quan
@@ -165,7 +185,12 @@ function About() {
           </div>
           <div className="row">
             {listProject?.map((p, index) => (
-              <div key={index} className="col-md-4">
+              <div
+                key={index}
+                className="col-md-4"
+                data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
+                data-aos-duration="2500"
+              >
                 <a href={`/du-an/chi-tiet/${p?._id}`}>
                   <div className="box-news-full">
                     <img alt="" src={p?.image[0]?.url} />
@@ -200,7 +225,9 @@ function About() {
 
             <div className="col-lg-12 ">
               <div className="text-center" style={{ marginTop: "15px" }}>
-                <a href="/du-an" className="btn btn-outline-success">XEM THÊM</a>
+                <a href="/du-an" className="btn btn-outline-success">
+                  XEM THÊM
+                </a>
               </div>
             </div>
           </div>

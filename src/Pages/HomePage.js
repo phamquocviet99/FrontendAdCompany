@@ -136,12 +136,12 @@ function HomePage() {
             <p className="font-title-home">Dịch vụ của chúng tôi</p>
           </div>
           <div className="row">
-            <div
-              data-aos="fade-right"
-              data-aos-duration="2000"
-              className="col-md-8"
-            >
-              <div className="row">
+            <div className="col-md-8">
+              <div
+                className="row"
+                data-aos="fade-right"
+                data-aos-duration="2000"
+              >
                 <div className="col-sm-6">
                   <div className="txt-box-service">
                     <div className="title-inline">
@@ -184,7 +184,11 @@ function HomePage() {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div
+                className="row"
+                data-aos="fade-right"
+                data-aos-duration="3000"
+              >
                 <div className="col-sm-6">
                   <div className="txt-box-service">
                     <div className="title-inline">
@@ -479,21 +483,25 @@ function HomePage() {
         </div>
       </article>
       {listProject?.length >= 6 ? (
-        <article
-          className="home-project "
-          data-aos="fade-up"
-          data-aos-duration="2000"
-        >
+        <article className="home-project ">
           <div className="container">
             <div className="home-title">
               <p className="font-title-home">dự án</p>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div
+              class="col-md-3 col-sm-6"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <div class="ed-product">
                 <DivDesign1 project={listProject[0]} />
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div
+              class="col-md-3 col-sm-6"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <div class="ed-product">
                 <DivDesign2 project={listProject[1]} />
               </div>
@@ -501,12 +509,20 @@ function HomePage() {
                 <DivDesign2 project={listProject[2]} />
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div
+              class="col-md-3 col-sm-6"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+            >
               <div class="ed-product">
                 <DivDesign1 project={listProject[3]} />
               </div>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div
+              class="col-md-3 col-sm-6"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+            >
               <div class="ed-product">
                 <DivDesign2 project={listProject[4]} />
               </div>

@@ -4,7 +4,8 @@ import "./BoxProduct.css";
 function BoxProduct({ product }) {
  
   return (
-    <div className="box-product">
+    <div className="box-product"  data-aos="fade-left"
+    data-aos-duration="2000">
       <a href={`/san-pham/chi-tiet/${product._id}`}>
         <img alt="" src={product?.avatar?.url}></img>
       </a>
