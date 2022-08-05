@@ -533,7 +533,11 @@ function HomePage() {
       <article ref={contact} className="home-contact">
         <div className="container">
           <div className="row">
-            <div className="col-md-6 setting-contact">
+            <div
+              className="col-md-6 setting-contact"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <div class="col-sm-6">
                 <Form.Control
                   onChange={handleChangeName}
@@ -580,7 +584,12 @@ function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="col-md-6" style={{ padding: "0" }}>
+            <div
+              className="col-md-6"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+              style={{ padding: "0" }}
+            >
               <Iframe iframe={iframe}></Iframe>
             </div>
           </div>

@@ -29,8 +29,7 @@ function Footer() {
   }, []);
   return (
     <div
-      data-aos="fade-down"
-      data-aos-duration="700"
+   
       className="footer-container"
     >
       <div className="background-footer">

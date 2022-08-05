@@ -19,9 +19,10 @@ function Project() {
     limit: 6,
     page: 0,
   });
+  const [loading, setLoading] = useState(false);
   const totalPages = Math.ceil(pagination.countRows / pagination.limit);
   useEffect(() => {
-    document.title="DỰ ÁN"
+    document.title = "DỰ ÁN";
     const FetchListCategory = async () => {
       try {
         const response = await CategoryProjectApi.getAll();
@@ -38,11 +39,13 @@ function Project() {
   useEffect(() => {
     const FetchListProject = async () => {
       try {
+        setLoading(true);
         const response = await ProjectApi.getAll(filters);
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
           setListProject(data.data);
           setPagination(data.pageInfo);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
@@ -65,7 +68,7 @@ function Project() {
     } else {
       FetchListProjectByIDCate();
     }
-  }, [id,filters]);
+  }, [id, filters]);
   function handlePageChange(newPage) {
     setPagination({ ...pagination, page: newPage });
     setFilters({ ...filters, page: newPage });
@@ -84,7 +87,7 @@ function Project() {
                 damping: 20,
               }}
             >
-              dịch vụ
+              dự án
             </motion.h2>
           </div>
         </div>
@@ -92,7 +95,11 @@ function Project() {
       <article className="project-page">
         <div className="container">
           <div className="row">
-            <div className="col-md-3">
+            <div
+              className="col-md-3"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
               <div>
                 <div className="home-title">
                   <p style={{ fontSize: "20px" }} className="font-title-home">
@@ -116,33 +123,63 @@ function Project() {
               </div>
             </div>
             <div className="col-lg-9">
-              {listProject?.map((p, index) => (
-                <div className="col-sm-4">
-                  <BoxNewsFull project={p} />
+              {loading ? (
+                <div
+                  className="text-center"
+                  style={{
+                    height: "780px",
+                    width: "100%",
+                    fontSize: "30px",
+                    display: "flex",
+                    alignItems: "center",
+                    color: "#6f6f6f",
+                  }}
+                >
+                  Đang tải dự án...
                 </div>
-              ))}
+              ) : (
+                <div>
+                  {" "}
+                  {listProject?.map((p, index) => (
+                    <div
+                      className="col-sm-4"
+                     
+                    >
+                      <BoxNewsFull project={p} />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <div className="pagination">
-            <button
-              style={{ marginRight: "10px" }}
-              className="btn btn-outline-success"
-              disabled={pagination.page <= 0}
-              onClick={() => handlePageChange(pagination.page - 1)}
-            >
-              Quay lại
-            </button>
-            <button
-              className="btn btn-outline-success"
-              disabled={pagination.page >= totalPages - 1}
-              onClick={() => handlePageChange(pagination.page + 1)}
-            >
-              Xem thêm
-            </button>
+            {pagination.page <= 0 ? (
+              <></>
+            ) : (
+              <button
+                style={{ marginRight: "10px" }}
+                className="btn btn-outline-success"
+                disabled={pagination.page <= 0}
+                onClick={() => handlePageChange(pagination.page - 1)}
+              >
+                Quay lại
+              </button>
+            )}
+            {pagination.page >= totalPages - 1 ? (
+              <></>
+            ) : (
+              <button
+                className="btn btn-outline-success"
+                disabled={pagination.page >= totalPages - 1}
+                onClick={() => handlePageChange(pagination.page + 1)}
+              >
+                Xem thêm
+              </button>
+            )}
           </div>
         </div>
       </article>
-      <OnTop/>
+      <OnTop />
     </div>
   );
 }

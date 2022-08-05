@@ -33,9 +33,20 @@ function BoxNewsFull({ project }) {
     );
   } else {
     return (
-      <a href={`/du-an/chi-tiet/${project._id}`} className="box-news-full">
-        <img alt="" src=  {project?.image[ Math.floor(Math.random() * project?.image.length)].url} />
-       
+      <a
+        href={`/du-an/chi-tiet/${project._id}`}
+        className="box-news-full"
+        data-aos="fade-left"
+        data-aos-duration="2000"
+      >
+        <img
+          alt=""
+          src={
+            project?.image[Math.floor(Math.random() * project?.image.length)]
+              .url
+          }
+        />
+
         <div className="row infor-news-full">
           <div className="col-xs-12 title-post ed-food-title">
             <h2>{project?.name}</h2>
@@ -53,7 +64,7 @@ function BoxNewsFull({ project }) {
                 Xem thêm
               </a>
             </div>
-            <div style={{height:"20px"}}/>
+            <div style={{ height: "20px" }} />
           </div>
         </div>
       </a>
