@@ -48,11 +48,13 @@ import ProductDetailAdmin from "./Admin/Product/ProductDetail";
 import ProductUpdate from "./Admin/Product/ProductUpdate";
 import Partner from "./Admin/Partner/Partner";
 import MessameAdmin from "./Admin/Message/Message";
+import CNavbar from "./components/CheckNavbar/CNavbar";
 
 function ClientLayout() {
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
+      <CNavbar/>
       <Outlet />
       <Footer />
     </div>
