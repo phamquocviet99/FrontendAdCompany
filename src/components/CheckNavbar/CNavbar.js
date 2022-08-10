@@ -1,6 +1,6 @@
 import { React, useRef } from "react";
 import "./CNavbar.css";
-import { FaBars, FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaBars, FaArrowAltCircleUp } from "react-icons/fa";
 function CNavbar() {
   const navRef = useRef();
   const showNavBar = () => {
@@ -78,7 +78,7 @@ function CNavbar() {
         ))}
 
         <button className="nav-btn nav-close-btn" onClick={showNavBar}>
-          <FaArrowAltCircleLeft />
+          <FaArrowAltCircleUp />
         </button>
       </nav>
       <button className="nav-btn" onClick={showNavBar}>
