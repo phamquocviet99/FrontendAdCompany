@@ -1,6 +1,6 @@
 import { React, useRef } from "react";
 import "./CNavbar.css";
-import { FaBars,FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaBars, FaArrowAltCircleLeft } from "react-icons/fa";
 function CNavbar() {
   const navRef = useRef();
   const showNavBar = () => {
@@ -50,33 +50,35 @@ function CNavbar() {
   ];
   return (
     <header>
-      <a href="/"> <img
-        className="img-logo-navbar"
-        src={require("../../images/logo/logo-header.png")}
-        alt="logo"
-      /></a>
-     
+      <a href="/">
+        {" "}
+        <img
+          className="img-logo-navbar"
+          src={require("../../images/logo/logo-header.png")}
+          alt="logo"
+        />
+      </a>
+
       <nav ref={navRef}>
         {listItem.map((item, index) => (
-       
-            <a
-          
-              href={item.link}
-              key={item.id}
-              className={
-                "/" + window.location.pathname.split("/").slice(1)[0] ===
-                item.link
-                  ? "text-active "
-                  : "text  "
-              }
-            >
-              {item.name}
-            </a>
-          
+          <a
+           
+            href={item.link}
+            key={item.id}
+            className={
+              "/" + window.location.pathname.split("/").slice(1)[0] ===
+              item.link
+                ? "text-active "
+                : "text  "
+            }
+             style={{ textDecoration: "none" }}
+          >
+            {item.name}
+          </a>
         ))}
 
         <button className="nav-btn nav-close-btn" onClick={showNavBar}>
-        <FaArrowAltCircleLeft />
+          <FaArrowAltCircleLeft />
         </button>
       </nav>
       <button className="nav-btn" onClick={showNavBar}>

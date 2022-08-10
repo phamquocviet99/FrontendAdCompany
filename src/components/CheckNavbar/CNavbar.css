@@ -9,6 +9,7 @@ header {
   padding: 0 15rem;
   background-color: rgba(51, 51, 51, 0.598);
   /* color: #eee; */
+  text-decoration: none;
 }
 
 .text {
@@ -17,6 +18,7 @@ header {
   font-size: 20px;
   margin: 0 6px;
   font-weight: 600;
+  text-decoration: none;
 }
 .text:hover {
   text-transform: uppercase;
@@ -24,6 +26,7 @@ header {
   font-size: 20px;
   font-weight: 600;
   margin: 0 6px;
+  text-decoration: none;
 }
 .text-active {
   text-transform: uppercase;
@@ -31,6 +34,7 @@ header {
   font-size: 20px;
   font-weight: 600;
   margin: 0 6px;
+  text-decoration: none;
 }
 nav a {
   margin: 0 2rem;
@@ -40,6 +44,11 @@ nav a {
 /* nav a:hover {
   color: aquamarine;
 } */
+header > nav > a {
+  text-decoration: none;
+  color :#fff
+}
+
 header .nav-btn {
   padding: 5px;
   cursor: pointer;
