@@ -396,6 +396,11 @@
 }
 
 @media screen and (max-width: 760px) {
+  .ed-comments-cal-right {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
   .box-about {
     border: 7px solid #3e7319;
     padding-top: 35em;

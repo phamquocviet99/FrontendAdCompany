@@ -78,7 +78,7 @@ function News() {
                 Đang tải tin tức...
               </div>
             ) : (
-              <div>
+              <div >
                 {listNews?.map((n, index) => (
                   <div
                     key={index}

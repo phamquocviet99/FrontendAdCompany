@@ -10,7 +10,7 @@ function BoxNewsRight({ news }) {
     <a href={`/tin-tuc/chi-tiet/${news._id}`}>
       <div className="box-news-right">
         <img alt="" src={news?.urlImage} className="img-news"></img>
-        <h2 className="title-inline limitt" style={{ paddingRight: "20px" }}>
+        <h2 className="title-inline limitt" style={{ marginRight: "20px" }}>
           {news?.name}
         </h2>
         <div class="ed-comments-cal-right">

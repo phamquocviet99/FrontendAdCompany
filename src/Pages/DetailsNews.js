@@ -106,6 +106,7 @@ function DetailsNews() {
               ></img>
             </div>
             <div
+            style={{marginTop:"10px"}}
               data-aos="fade-left"
               data-aos-duration="2000"
               className="col-md-4"
