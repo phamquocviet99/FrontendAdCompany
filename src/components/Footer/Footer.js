@@ -36,7 +36,7 @@ function Footer() {
         <div className="content-footer">
           <div className="container">
             <div className="row">
-              <div className="col-md-6 "  data-aos="fade-right"
+              <div className="col-md-6 "  data-aos="fade-up"
               data-aos-duration="2700">
                 <h4 className="title-ft">Liên hệ</h4>
                 <h3 className="txt-ft">{information.name}</h3>
@@ -48,7 +48,7 @@ function Footer() {
                   <li className="txt-li">Email: {information.email}</li>
                 </ul>
               </div>
-              <div className="col-md-6 "  data-aos="fade-left"
+              <div className="col-md-6 "  data-aos="fade-up"
               data-aos-duration="2700">
                 <h4 className="title-ft">Dịch vụ</h4>
                 <ul className="custome-ul-right">
