@@ -2,7 +2,7 @@ import React from "react";
 import "./BoxNewsRight.css";
 
 function ChangeDate(text) {
-  if(!text)return
+  if (!text) return;
   return text.substring(8, 10) + "/" + text.substring(5, 7);
 }
 function BoxNewsRight({ news }) {
@@ -10,9 +10,7 @@ function BoxNewsRight({ news }) {
     <a href={`/tin-tuc/chi-tiet/${news._id}`}>
       <div className="box-news-right">
         <img alt="" src={news?.urlImage} className="img-news"></img>
-        <h2 className="title-inline limitt" style={{ marginRight: "20px" }}>
-          {news?.name}
-        </h2>
+        <h2 className="title-inline limitt">{news?.name}</h2>
         <div class="ed-comments-cal-right">
           <div class="ed-comment-right">
             <i class="fa fa-eye icon-news-home-right"></i>
