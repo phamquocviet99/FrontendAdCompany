@@ -106,10 +106,10 @@ function DetailsNews() {
               ></img>
             </div>
             <div
-            style={{marginTop:"10px"}}
+         
               data-aos="fade-left"
               data-aos-duration="2000"
-              className="col-md-4"
+              className="col-md-4 mrgin-10"
             >
               {listNews?.map((n, index) =>
                 n._id !== id ? <BoxNewsRight key={index} news={n} /> : <></>
