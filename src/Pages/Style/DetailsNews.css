@@ -3,6 +3,7 @@
 }
 .title-news-details > h2 {
   font-size: 30px;
+  text-transform: uppercase;
 }
 .title-news-details > h5 {
   font-family: inherit;
