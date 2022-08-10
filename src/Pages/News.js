@@ -10,11 +10,11 @@ function News() {
   const [listNews, setListNews] = useState([]);
   const [pagination, setPagination] = useState({
     page: 0,
-    limit: 18,
+    limit: 9,
     countRows: 1,
   });
   const [filters, setFilters] = useState({
-    limit: 18,
+    limit: 9,
     page: 0,
   });
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ function News() {
       }
     };
     FetchListNews();
-  }, []);
+  }, [filters]);
   function handlePageChange(newPage) {
     setPagination({ ...pagination, page: newPage });
     setFilters({ ...filters, page: newPage });
@@ -99,7 +99,7 @@ function News() {
           ) : (
             <button
               style={{ marginRight: "10px" }}
-              className="btn btn-outline-success"
+              className="btn btn-outline-secondary"
               disabled={pagination.page <= 0}
               onClick={() => handlePageChange(pagination.page - 1)}
             >

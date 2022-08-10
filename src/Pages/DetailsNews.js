@@ -90,7 +90,7 @@ function DetailsNews() {
         <div className="container">
           <div className="title-news-details">
             <h2> {news.name}</h2>
-            <h5>L.A.D - {news?.createdAt}</h5>
+            <h5>L.A.D - {news?.createdAt?.slice(0,10)}</h5>
             <h6></h6>
           </div>
           <div className="row">

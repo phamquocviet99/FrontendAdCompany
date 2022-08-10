@@ -54,7 +54,7 @@ function Recruit() {
                   >
                     <p className="name-cruit">{r?.name}</p>
                     <p className="des-cruit">
-                      Ngày đăng : <span>{r?.createdAt}</span>
+                      Ngày đăng : <span>{r?.createdAt?.slice(0,10)}</span>
                     </p>
                   </div>
                   <div

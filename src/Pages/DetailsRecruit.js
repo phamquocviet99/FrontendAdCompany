@@ -16,6 +16,7 @@ function DetailsRecruit() {
         const data = JSON.parse(JSON.stringify(response));
         if (!data.error) {
           setRecruit(data.data);
+          console.log(data.data)
         }
       } catch (error) {
         console.log(error);
@@ -48,7 +49,7 @@ function DetailsRecruit() {
             <div className="col-lg-12">
               <div className="title-detail-design">
                 <h2>{recruit?.name}</h2>
-                <h5>15/04/2021</h5>
+                <h5>{recruit?.createdAt?.slice(0,10)}</h5>
                 <h6 />
               </div>
               <div className="title-detail-design">

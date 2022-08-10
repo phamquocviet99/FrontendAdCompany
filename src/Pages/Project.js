@@ -158,7 +158,7 @@ function Project() {
             ) : (
               <button
                 style={{ marginRight: "10px" }}
-                className="btn btn-outline-success"
+                className="btn btn-outline-secondary"
                 disabled={pagination.page <= 0}
                 onClick={() => handlePageChange(pagination.page - 1)}
               >

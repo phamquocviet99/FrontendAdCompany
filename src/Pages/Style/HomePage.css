@@ -66,6 +66,15 @@
   text-transform: uppercase;
   border-color: #124a2f;
 }
+.btn-outline-secondary {
+  /* height: 40px; */
+  width: 110px;
+  font-size: 14px;
+  border: 3px solid #252525;
+  color: #252525;
+  text-transform: uppercase;
+  border-color: #252525;
+}
 .btn-outline-success:hover {
   /* height: 40px; */
   width: 110px;

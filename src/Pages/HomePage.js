@@ -324,13 +324,18 @@ function HomePage() {
                   </div>
                 </div>
               </div>
-              <div
-                className="col-md-5 col-xs-12"
-                data-aos="fade-left"
-                data-aos-duration="2000"
-              >
+              <div className="col-md-5 col-xs-12">
                 {listNews?.map((n, index) =>
-                  index !== 0 ? <BoxNewsRight news={n} /> : <></>
+                  index !== 0 ? (
+                    <div
+                      data-aos="fade-left"
+                      data-aos-duration={2000 + 500 * index}
+                    >
+                      <BoxNewsRight news={n} />
+                    </div>
+                  ) : (
+                    <></>
+                  )
                 )}
               </div>
             </div>

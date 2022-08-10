@@ -82,7 +82,7 @@ function Service() {
       image1:
       "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvtcanhquana.jpg?alt=media&token=f3e1ed1a-4b1b-4fad-83d4-cb28c2cad1b4",
       image2:
-        "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvtcanhquan.jpg?alt=media&token=078a45e3-303a-46c5-8bf4-d23546c151ee",
+        "https://firebasestorage.googleapis.com/v0/b/ad-company-345502.appspot.com/o/images%2Fservice%2Fvat-lieu-thiet-ke-canh-quan.jpg?alt=media&token=aa2517c1-6f93-40ed-b913-f071caae5b82",
       summary:
         "L.A.D chuyên cung cấp đầy đủ vật tư canh quan, phục vụ công tác duy trì chăm sóc bảo dưỡng cây xanh cảnh quan trong thành phố và các khu vực lân cận.",
       link: "/san-pham",
