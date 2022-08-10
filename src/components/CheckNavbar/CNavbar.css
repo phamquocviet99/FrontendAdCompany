@@ -37,9 +37,9 @@ nav a {
   color: #eee;
   text-decoration: none;
 }
-nav a:hover {
+/* nav a:hover {
   color: aquamarine;
-}
+} */
 header .nav-btn {
   padding: 5px;
   cursor: pointer;
