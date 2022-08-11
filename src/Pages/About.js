@@ -6,7 +6,7 @@ import ProjectApi from "../api/ProjectApi";
 import OnTop from "../components/BacktoTop/OnTop";
 
 function About() {
-  const [width, setWidth] = useState(0);
+  const [widthh, setWidth] = useState(0);
   const [listPartner, setListPartner] = useState([]);
   const [listProject, setListProject] = useState([]);
   const carousel = useRef();
@@ -41,7 +41,7 @@ function About() {
   }, []);
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-  }, []);
+  }, [carousel]);
   return (
     <div className="content-about-page">
       <div className="banner-about-page">
@@ -238,12 +238,15 @@ function About() {
           <div className="home-title">
             <p className="font-title-home">đối tác chiến lược</p>
           </div>
-          <motion.div ref={carousel}    whileTap={"grabbing"} className="carousel-partnerr">
+          <motion.div
+            ref={carousel}
+            whileTap={"grabbing"}
+            className="carousel-partnerr"
+          >
             <motion.div
               drag="x"
-              dragConstraints={{ right: 0, left: -width }}
+              dragConstraints={{ right: 0, left: -listPartner?.length *50 }}
               className="inner-carousel-partnerr"
-           
             >
               {listPartner?.map((p, index) => (
                 <motion.div key={index} className="item-img-partnerr">
