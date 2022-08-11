@@ -43,7 +43,7 @@ nav a {
 }
 nav a:hover {
   text-transform: uppercase;
-  color:  rgb(255, 235, 51);
+  color: rgb(255, 235, 51);
   font-size: 20px;
   margin: 0 6px;
   font-weight: 600;
@@ -52,6 +52,23 @@ nav a:hover {
 header > nav > a {
   text-decoration: none;
   color: #fff;
+}
+header > nav > a:link {
+  text-decoration: none;
+  color: black;
+}
+
+header > nav > a:visited {
+  text-decoration: none;
+
+}
+
+header > nav > a:hover {
+  text-decoration: none;
+}
+
+header > nav > a:active {
+  text-decoration: none;
 }
 
 header .nav-btn {

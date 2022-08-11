@@ -238,12 +238,12 @@ function About() {
           <div className="home-title">
             <p className="font-title-home">đối tác chiến lược</p>
           </div>
-          <motion.div ref={carousel} className="carousel-partnerr">
+          <motion.div ref={carousel}    whileTap={"grabbing"} className="carousel-partnerr">
             <motion.div
               drag="x"
               dragConstraints={{ right: 0, left: -width }}
               className="inner-carousel-partnerr"
-              whileTap={"grabbing"}
+           
             >
               {listPartner?.map((p, index) => (
                 <motion.div key={index} className="item-img-partnerr">
