@@ -41,12 +41,17 @@ nav a {
   /* color: #eee; */
   text-decoration: none;
 }
-/* nav a:hover {
-  color: aquamarine;
-} */
+nav a:hover {
+  text-transform: uppercase;
+  color:  rgb(255, 235, 51);
+  font-size: 20px;
+  margin: 0 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
 header > nav > a {
   text-decoration: none;
-  color :#fff
+  color: #fff;
 }
 
 header .nav-btn {
@@ -76,7 +81,7 @@ header .nav-btn {
     z-index: 2000;
     left: 0;
     top: 83px;
-  padding-top: 10px; 
+    padding-top: 10px;
 
     width: 100%;
     display: flex;

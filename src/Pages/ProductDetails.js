@@ -317,7 +317,7 @@ function ProductDetails() {
         </div>
         <div className="container">
           <div className="home-title">
-            <p className="font-title-home">Sản phẩm cùng danh mục</p>
+            <p className="font-title-home">Sản phẩm liên quan</p>
           </div>
           <div className="row mt-5">
             {listProduct?.map((p, index) =>

@@ -243,6 +243,7 @@ function About() {
               drag="x"
               dragConstraints={{ right: 0, left: -width }}
               className="inner-carousel-partnerr"
+              whileTap={"grabbing"}
             >
               {listPartner?.map((p, index) => (
                 <motion.div key={index} className="item-img-partnerr">
